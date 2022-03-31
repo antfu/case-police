@@ -8,6 +8,7 @@
   "bitbucket": "Bitbucket",
   "centos": "CentOS",
   "cjs": "CJS",
+  "cli": "CLI",
   "coffeescript": "CoffeeScript",
   "commonjs": "CommonJS",
   "cors": "CORS",
