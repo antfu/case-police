@@ -59,6 +59,7 @@
   "jsonp": "JSONP",
   "jsp": "JSP",
   "latex": "LaTeX",
+  "lru": "LRU",
   "macbook": "MacBook",
   "macos": "macOS",
   "mariadb": "MariaDB",
