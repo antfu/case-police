@@ -10,7 +10,7 @@ export function buildRegex(dictionary: Record<string, string>): RegExp {
   return regex
 }
 
-export function replace(code: string, id: string, dict = dictionary, regex?: RegExp): string | undefined {
+export function replace(code: string, id: string, dict: Record<string, string> = dictionary, regex?: RegExp): string | undefined {
   if (code.includes(IGNORE_KEY))
     return
   regex = regex || buildRegex(dict)
