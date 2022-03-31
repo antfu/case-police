@@ -12,6 +12,10 @@ import { buildRegex, replace } from './utils'
 async function run() {
   const argv = minimist(process.argv.slice(2), {
     boolean: ['fix'],
+    string: ['dict'],
+    alias: {
+      d: 'dict',
+    },
   })
 
   const ignore = [
@@ -27,11 +31,22 @@ async function run() {
     ignore.push(...parseIgnore(gitignore))
   }
 
+  let dict = dictionary
+
+  if (argv.dict) {
+    const str = await fs.readFile(argv.dict, 'utf8')
+    const userDict = JSON.parse(str)
+    dict = {
+      ...dictionary,
+      ...userDict,
+    }
+  }
+
   const files = await fg('**/*.*', {
     ignore,
   }).then(files => files.filter(file => isText(file)))
 
-  const regex = buildRegex(dictionary)
+  const regex = buildRegex(dict)
 
   const limit = pLimit(5)
   console.log()
@@ -41,7 +56,7 @@ async function run() {
   const wrote: string[] = []
   await Promise.all(files.map(file => limit(async() => {
     const code = await fs.readFile(file, 'utf-8')
-    const replaced = replace(code, file, dictionary, regex)
+    const replaced = replace(code, file, dict, regex)
     if (replaced) {
       wrote.push(file)
       if (argv.fix)
