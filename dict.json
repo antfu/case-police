@@ -95,6 +95,7 @@
   "springmvc": "SpringMVC",
   "sql": "SQL",
   "sqlite": "SQLite",
+  "sqlserver": "SQLServer",
   "ssh": "SSH",
   "ssl": "SSL",
   "stackblitz": "StackBlitz",
