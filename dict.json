@@ -18,6 +18,7 @@
   "cpu": "CPU",
   "css": "CSS",
   "csv": "CSV",
+  "dapr": "Dapr",
   "dynamodb": "DynamoDB",
   "ecmascript": "ECMAScript",
   "elasticsearch": "Elasticsearch",
