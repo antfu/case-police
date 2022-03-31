@@ -32,6 +32,7 @@
   "gitpod": "Gitpod",
   "gorm": "GORM",
   "graphql": "GraphQL",
+  "grpc": "gRPC",
   "hacpai": "HacPai",
   "html": "HTML",
   "iaas": "IaaS",
