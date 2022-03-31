@@ -10,7 +10,13 @@ export function buildRegex(dictionary: Record<string, string>): RegExp {
   return regex
 }
 
-export function replace(code: string, id: string, dict: Record<string, string> = dictionary, regex?: RegExp): string | undefined {
+export function replace(
+  code: string,
+  id: string,
+  dict: Record<string, string> = dictionary,
+  regex?: RegExp,
+  disabled: string[] = [],
+): string | undefined {
   if (code.includes(IGNORE_KEY))
     return
   regex = regex || buildRegex(dict)
@@ -18,7 +24,10 @@ export function replace(code: string, id: string, dict: Record<string, string> =
   code = code.replace(regex, (_, key: string, index: number) => {
     if (!key.match(/[A-Z]/) || !key.match(/[a-z]/))
       return _
-    const value = dict[key.toLowerCase()]
+    const lower = key.toLowerCase()
+    if (disabled.includes(lower))
+      return _
+    const value = dict[lower]
     if (!value || value === key)
       return _
     changed = true

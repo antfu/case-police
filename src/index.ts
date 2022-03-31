@@ -12,7 +12,7 @@ import { buildRegex, replace } from './utils'
 async function run() {
   const argv = minimist(process.argv.slice(2), {
     boolean: ['fix', 'no-default'],
-    string: ['dict'],
+    string: ['dict', 'disable'],
     alias: {
       d: 'dict',
     },
@@ -46,6 +46,7 @@ async function run() {
     ignore,
   }).then(files => files.filter(file => isText(file)))
 
+  const disabled: string[] = (argv.disable ? argv.disable.split(',') : []).map((i: string) => i.trim().toLowerCase())
   const regex = buildRegex(dict)
 
   const limit = pLimit(5)
@@ -56,7 +57,7 @@ async function run() {
   const wrote: string[] = []
   await Promise.all(files.map(file => limit(async() => {
     const code = await fs.readFile(file, 'utf-8')
-    const replaced = replace(code, file, dict, regex)
+    const replaced = replace(code, file, dict, regex, disabled)
     if (replaced) {
       wrote.push(file)
       if (argv.fix)
