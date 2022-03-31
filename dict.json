@@ -24,6 +24,7 @@
   "elasticsearch": "Elasticsearch",
   "eslint": "ESLint",
   "esm": "ESM",
+  "etcd": "etcd",
   "ffmpeg": "FFmpeg",
   "freemarker": "FreeMarker",
   "gitee": "Gitee",
