@@ -24,6 +24,12 @@ It will scan all your source files and fix the cases of [known names](./dict.jso
 
 Only the word including both uppercase and lowercase will be fixed. (e.g. `Github` -> `GitHub`; `github` and `GITHUB` will be left untouched).
 
+## Options
+
+|Options||
+|---|---|
+|-d, --dict \<path\> | path to custom dict file, merge with origin dict|
+
 ### Using in CI
 
 Simply add `case-police` (without `--fix`) to your workflow and it will exit with a non-zero code for your CI to catch it.
