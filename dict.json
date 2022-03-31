@@ -112,7 +112,7 @@
   "vuepress": "VuePress",
   "vueuse": "VueUse",
   "wasm": "Wasm",
-  "webpack": "Webpack",
+  "webpack": "webpack",
   "websocket": "WebSocket",
   "webstorm": "WebStorm",
   "wechat": "WeChat",
