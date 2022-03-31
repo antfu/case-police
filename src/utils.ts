@@ -31,7 +31,10 @@ export function replace(
     if (!value || value === key)
       return _
     changed = true
-    console.log(`${c.dim(`${id}:${index}`)} \t${c.yellow(key)} -> ${c.green(value)}`)
+    const lines = code.slice(0, index).split('\n')
+    const line = code.slice(0, index).split('\n').length
+    const col = (lines[lines.length - 1].length || 0) + 1
+    console.log(`${c.yellow(key)} ${c.dim('→')} ${c.green(value)} \t ${c.dim(`./${id}:${line}:${col}`)}`)
     return value
   })
   if (changed)
