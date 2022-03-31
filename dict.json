@@ -15,5 +15,6 @@
   "vitepress": "VitePress",
   "vscode": "VS Code",
   "vuepress": "VuePress",
-  "vueuse": "VueUse"
+  "vueuse": "VueUse",
+  "wasm": "Wasm"
 }
