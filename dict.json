@@ -82,6 +82,7 @@
   "protobuf": "Protobuf",
   "redhat": "RedHat",
   "restful": "RESTful",
+  "rpc": "RPC",
   "rxjs": "RxJS",
   "saas": "SaaS",
   "segemntfault": "SegmentFault",
@@ -116,8 +117,5 @@
   "xhtml": "XHTML",
   "xml": "XML",
   "yaml": "YAML",
-  "youtube": "YouTube",
-  "python": "Python",
-  "rust": "Rust",
-  "lru": "LRU"
+  "youtube": "YouTube"
 }
