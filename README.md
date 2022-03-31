@@ -8,7 +8,7 @@
 - Type**S**cript, not *Typescript*
 - **m**acOS, not *MacOS*
 - **VS C**ode, not *Vscode*
-- ...
+- [...](./dict.json)
 
 Make the case correct, PLEASE!
 
