@@ -67,6 +67,7 @@
   "mariadb": "MariaDB",
   "markdown": "Markdown",
   "markdownlint": "MarkdownLint",
+  "mathml": "MathML",
   "mediawiki": "MediaWiki",
   "memcached": "Memcached",
   "messagepack": "MessagePack",
