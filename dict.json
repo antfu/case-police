@@ -1,6 +1,7 @@
 {
   "cjs": "CJS",
   "css": "CSS",
+  "coffeescript": "CoffeeScript"
   "eslint": "ESLint",
   "esm": "ESM",
   "gitee": "Gitee",
