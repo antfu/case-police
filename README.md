@@ -4,9 +4,10 @@
 
 <!-- @case-police-ignore -->
 
-- Type**S**cript, not *Typescript*
 - Git**H**ub, not *Github*
-- VS Code, not *Vscode*
+- Type**S**cript, not *Typescript*
+- **m**acOS, not *MacOS*
+- **VS C**ode, not *Vscode*
 - ...
 
 Make the case correct, PLEASE!
