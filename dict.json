@@ -72,6 +72,7 @@
   "memcached": "Memcached",
   "messagepack": "MessagePack",
   "mongodb": "MongoDB",
+  "mongoose": "Mongoose",
   "mybatis": "MyBatis",
   "mysql": "MySQL",
   "npm": "npm",
