@@ -35,6 +35,7 @@ Simply add `case-police` (without `--fix`) to your workflow and it will exit wit
 | --- | --- |
 | `--fix` | Rewrite changes to file |
 | `-d, --dict \<path\>` | Custom dictionary JSON, will be merged with original dict |
+| `--no-default` | Disable the default dictionary |
 
 ## Sponsors
 

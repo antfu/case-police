@@ -11,7 +11,7 @@ import { buildRegex, replace } from './utils'
 
 async function run() {
   const argv = minimist(process.argv.slice(2), {
-    boolean: ['fix'],
+    boolean: ['fix', 'no-default'],
     string: ['dict'],
     alias: {
       d: 'dict',
@@ -31,13 +31,13 @@ async function run() {
     ignore.push(...parseIgnore(gitignore))
   }
 
-  let dict = dictionary
+  let dict = argv['no-default'] ? {} : dictionary
 
   if (argv.dict) {
     const str = await fs.readFile(argv.dict, 'utf8')
     const userDict = JSON.parse(str)
     dict = {
-      ...dictionary,
+      ...dict,
       ...userDict,
     }
   }
