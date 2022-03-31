@@ -6,12 +6,13 @@ import parseIgnore from 'parse-gitignore'
 import isText from 'is-text-path'
 import pLimit from 'p-limit'
 import minimist from 'minimist'
-import dictionary from '../dict.json'
+import defaultDictionary from '../dict.json'
 import { buildRegex, replace } from './utils'
 
 async function run() {
   const argv = minimist(process.argv.slice(2), {
     boolean: ['fix'],
+    string: ['append'],
   })
 
   const ignore = [
@@ -26,6 +27,10 @@ async function run() {
     const gitignore = await fs.readFile('.gitignore', 'utf8')
     ignore.push(...parseIgnore(gitignore))
   }
+
+  let dictionary = { ...defaultDictionary }
+  if (argv.append && existsSync(argv.append)) dictionary = { ...dictionary, ...JSON.parse(await fs.readFile(argv.append, 'utf8')) }
+  else if (argv.append) console.log(c.red('An --append option was provided but the file does not exist\n'))
 
   const files = await fg('**/*.*', {
     ignore,
