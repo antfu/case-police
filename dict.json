@@ -1,6 +1,7 @@
 {
   "actionscript": "ActionScript",
   "airpods": "AirPods",
+  "airdrop": "AirDrop",
   "ajax": "AJAX",
   "angularjs": "AngularJS",
   "api": "API",
@@ -41,6 +42,7 @@
   "ioc": "IoC",
   "ios": "iOS",
   "ipad": "iPad",
+  "ipados": "iPadOS",
   "ipfs": "IPFS",
   "iphone": "iPhone",
   "iphoto": "iPhoto",
@@ -117,6 +119,7 @@
   "vuepress": "VuePress",
   "vueuse": "VueUse",
   "wasm": "Wasm",
+  "watchos": "watchOS",
   "websocket": "WebSocket",
   "webstorm": "WebStorm",
   "wechat": "WeChat",
