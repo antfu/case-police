@@ -19,7 +19,7 @@ Make the case correct, PLEASE!
 npx case-police
 ```
 
-It will scan all your source files and fix the cases of [known names](./src/dict.ts).
+It will scan all your source files and fix the cases of [known names](./dict.json).
 
 Only the word including both uppercase and lowercase will be fixed. (e.g. `Github` -> `GitHub`; `github` and `GITHUB` will be left untouched).
 

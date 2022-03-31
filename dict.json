@@ -1,0 +1,17 @@
+{
+  "cjs": "CJS",
+  "css": "CSS",
+  "eslint": "ESLint",
+  "esm": "ESM",
+  "github": "GitHub",
+  "html": "HTML",
+  "ios": "iOS",
+  "iphone": "iPhone",
+  "javascript": "JavaScript",
+  "macos": "macOS",
+  "typescript": "TypeScript",
+  "vitepress": "VitePress",
+  "vscode": "VS Code",
+  "vuepress": "VuePress",
+  "vueuse": "VueUse"
+}

@@ -23,11 +23,13 @@
     ".": {
       "import": "./dist/index.mjs",
       "types": "./dist/index.d.ts"
-    }
+    },
+    "./*": "./*"
   },
   "files": [
     "dist",
-    "bin"
+    "bin",
+    "dict.json"
   ],
   "bin": {
     "case-police": "./bin/case-police.mjs"

@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import c from 'picocolors'
-import { dictionary } from './dict'
+import dictionary from '../dict.json'
 
 export const IGNORE_KEY = '@case-police-ignore'
 

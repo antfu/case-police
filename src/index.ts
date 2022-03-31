@@ -5,7 +5,7 @@ import c from 'picocolors'
 import parseIgnore from 'parse-gitignore'
 import isText from 'is-text-path'
 import pLimit from 'p-limit'
-import { dictionary } from './dict'
+import dictionary from '../dict.json'
 import { buildRegex, replace } from './utils'
 
 async function run() {
