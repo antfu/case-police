@@ -12,6 +12,7 @@
   "firefox": "Firefox",
   "gitee": "Gitee",
   "github": "GitHub",
+  "gitpod": "Gitpod",
   "gitlab": "GitLab",
   "graphql": "GraphQL",
   "html": "HTML",
@@ -24,6 +25,8 @@
   "latex": "LaTeX",
   "macbook": "MacBook",
   "macos": "macOS",
+  "markdown": "Markdown",
+  "markdownlint": "MarkdownLint",
   "restful": "RESTful",
   "rxjs": "RxJS",
   "stackblitz": "StackBlitz",
@@ -33,5 +36,6 @@
   "vscode": "VS Code",
   "vuepress": "VuePress",
   "vueuse": "VueUse",
-  "wasm": "Wasm"
+  "wasm": "Wasm",
+  "webpack": "Webpack"
 }
