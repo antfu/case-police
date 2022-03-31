@@ -12,7 +12,7 @@ import { buildRegex, replace } from './utils'
 async function run() {
   const argv = minimist(process.argv.slice(2), {
     boolean: ['fix'],
-    string: ['append'],
+    string: ['append', 'd', 'dict'],
   })
 
   const ignore = [
@@ -29,8 +29,11 @@ async function run() {
   }
 
   let dictionary = { ...defaultDictionary }
-  if (argv.append && existsSync(argv.append)) dictionary = { ...dictionary, ...JSON.parse(await fs.readFile(argv.append, 'utf8')) }
-  else if (argv.append) console.log(c.red('An --append option was provided but the file does not exist\n'))
+  if (argv.append && existsSync(argv.append)) {
+    const appendDictionary = JSON.parse(await fs.readFile(argv.append, 'utf8'))
+    dictionary = { ...dictionary, ...appendDictionary }
+  }
+  else if (argv.append) { console.log(c.red('An --append option was provided but the file does not exist\n')) }
 
   const files = await fg('**/*.*', {
     ignore,
