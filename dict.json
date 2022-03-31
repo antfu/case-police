@@ -56,6 +56,7 @@
   "jsonp": "JSONP",
   "jsp": "JSP",
   "latex": "LaTeX",
+  "lru": "LRU",
   "macbook": "MacBook",
   "macos": "macOS",
   "mariadb": "MariaDB",
@@ -116,8 +117,5 @@
   "xhtml": "XHTML",
   "xml": "XML",
   "yaml": "YAML",
-  "youtube": "YouTube",
-  "python": "Python",
-  "rust": "Rust",
-  "lru": "LRU"
+  "youtube": "YouTube"
 }
