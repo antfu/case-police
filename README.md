@@ -16,7 +16,7 @@ Make the case correct, PLEASE!
 **Make sure you have committed all unsaved works**, and then
 
 ```bash
-npx case-police
+npx case-police --fix
 ```
 
 It will scan all your source files and fix the cases of [known names](./dict.json).

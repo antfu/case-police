@@ -5,10 +5,15 @@ import c from 'picocolors'
 import parseIgnore from 'parse-gitignore'
 import isText from 'is-text-path'
 import pLimit from 'p-limit'
+import minimist from 'minimist'
 import dictionary from '../dict.json'
 import { buildRegex, replace } from './utils'
 
 async function run() {
+  const argv = minimist(process.argv.slice(2), {
+    boolean: ['fix'],
+  })
+
   const ignore = [
     '*.log',
     '**/dist/**',
@@ -39,7 +44,8 @@ async function run() {
     const replaced = replace(code, file, dictionary, regex)
     if (replaced) {
       wrote.push(file)
-      await fs.writeFile(file, replaced, 'utf-8')
+      if (argv.fix)
+        await fs.writeFile(file, replaced, 'utf-8')
     }
   })))
 
@@ -47,8 +53,16 @@ async function run() {
     console.log(c.green('All good, well done!'))
   }
   else {
-    console.log(c.yellow('\nfiles fixed:'))
+    if (argv.fix)
+      console.log(c.green('\nfiles fixed:'))
+    else
+      console.log(c.yellow('\nfiles needs to be fixed:'))
     console.log(c.dim(wrote.map(i => ` - ${i}`).join('\n')))
+
+    if (!argv.fix) {
+      console.log(c.dim('\nrun ') + c.magenta(c.bold('npx case-police --fix')) + c.dim(' to fix\n'))
+      process.exitCode = 1
+    }
   }
 }
 

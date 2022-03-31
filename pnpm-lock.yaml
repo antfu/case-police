@@ -7,15 +7,16 @@ importers:
       '@antfu/eslint-config': ^0.19.1
       '@antfu/ni': ^0.14.0
       '@babel/types': ^7.17.0
+      '@types/minimist': ^1.2.2
       '@types/node': ^17.0.23
       '@types/parse-gitignore': ^1.0.0
       bumpp: ^7.1.1
-      cac: ^6.7.12
       eslint: ^8.12.0
       esno: ^0.14.1
       fast-glob: ^3.2.11
       is-binary-path: ^2.1.0
       is-text-path: ^2.0.0
+      minimist: ^1.2.6
       p-limit: ^4.0.0
       parse-gitignore: ^1.0.1
       picocolors: ^1.0.0
@@ -29,15 +30,16 @@ importers:
       '@antfu/eslint-config': 0.19.1_eslint@8.12.0+typescript@4.6.3
       '@antfu/ni': 0.14.0
       '@babel/types': 7.17.0
+      '@types/minimist': 1.2.2
       '@types/node': 17.0.23
       '@types/parse-gitignore': 1.0.0
       bumpp: 7.1.1
-      cac: 6.7.12
       eslint: 8.12.0
       esno: 0.14.1
       fast-glob: 3.2.11
       is-binary-path: 2.1.0
       is-text-path: 2.0.0
+      minimist: 1.2.6
       p-limit: 4.0.0
       parse-gitignore: 1.0.1
       picocolors: 1.0.0
@@ -347,6 +349,10 @@ packages:
       '@types/unist': 2.0.6
     dev: true
 
+  /@types/minimist/1.2.2:
+    resolution: {integrity: sha512-jhuKLIRrhvCPLqwPcx6INqmKeiA5EWrsCOPhrlFSrbrmU4ZMPjj5Ul/oLCMDO98XRUIwVm78xICz4EPCektzeQ==}
+    dev: true
+
   /@types/node/17.0.23:
     resolution: {integrity: sha512-UxDxWn7dl97rKVeVS61vErvw086aCYhDLyvRQZ5Rk65rZKepaFdm53GeqXaKBuOhED4e9uWq34IC3TdSdJJ2Gw==}
     dev: true
@@ -631,11 +637,6 @@ packages:
       globby: 11.0.4
       prompts: 2.4.1
       semver: 7.3.5
-    dev: true
-
-  /cac/6.7.12:
-    resolution: {integrity: sha512-rM7E2ygtMkJqD9c7WnFU6fruFcN3xe4FM5yUmgxhZzIKJk4uHl9U/fhwdajGFQbQuv43FAUo1Fe8gX/oIKDeSA==}
-    engines: {node: '>=8'}
     dev: true
 
   /call-bind/1.0.2:
@@ -2686,7 +2687,7 @@ packages:
     resolution: {integrity: sha512-aKS4WQjPenRxiQsC93MNfjx+nbF4PAdYzmd/1JIj8HYzqfbu86beTuNgXDzPknWk0n0uARlyewZo4s++ES36Ow==}
     hasBin: true
     dependencies:
-      minimist: 1.2.5
+      minimist: 1.2.6
     dev: true
 
   /jsonc-eslint-parser/2.1.0:
@@ -2856,8 +2857,8 @@ packages:
       brace-expansion: 1.1.11
     dev: true
 
-  /minimist/1.2.5:
-    resolution: {integrity: sha512-FM9nNUYrRBAELZQT3xeZQ7fmMOBg6nWNmJKTcgsJeaLstP/UODVpGsr5OhXhhXg6f+qtJ8uiZ+PUxkDWcgIXLw==}
+  /minimist/1.2.6:
+    resolution: {integrity: sha512-Jsjnk4bw3YJqYzbdyBiNsPWHPfO++UGG749Cxs6peCu5Xg4nrena6OVxOYxrQTqww0Jmwt+Ref8rggumkTLz9Q==}
     dev: true
 
   /mkdirp/1.0.4:
@@ -3507,7 +3508,7 @@ packages:
     dependencies:
       '@types/json5': 0.0.29
       json5: 1.0.1
-      minimist: 1.2.5
+      minimist: 1.2.6
       strip-bom: 3.0.0
     dev: true
 
