@@ -12,7 +12,7 @@
   "cjs": "CJS",
   "cli": "CLI",
   "cmake": "CMake",
-  "cockroach": "CockroachDB",
+  "cockroachdb": "CockroachDB",
   "codepen": "CodePen",
   "codesandbox": "CodeSandbox",
   "coffeescript": "CoffeeScript",
