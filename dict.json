@@ -27,6 +27,7 @@
   "devops": "DevOps",
   "directx": "DirectX",
   "dynamodb": "DynamoDB",
+  "echarts": "ECharts",
   "ecmascript": "ECMAScript",
   "elasticsearch": "Elasticsearch",
   "eslint": "ESLint",
