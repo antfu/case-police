@@ -16,11 +16,12 @@
   "graphql": "GraphQL",
   "html": "HTML",
   "imac": "iMac",
+  "intellij": "IntelliJ",
   "ios": "iOS",
   "ipad": "iPad",
   "iphone": "iPhone",
   "javascript": "JavaScript",
-  "jquery": "jQuery",
+  "jetbrains": "JetBrains",
   "latex": "LaTeX",
   "macbook": "MacBook",
   "macos": "macOS",
@@ -29,9 +30,11 @@
   "stackblitz": "StackBlitz",
   "sveltekit": "SvelteKit",
   "typescript": "TypeScript",
+  "unocss": "UnoCSS",
   "vitepress": "VitePress",
   "vscode": "VS Code",
   "vuepress": "VuePress",
   "vueuse": "VueUse",
-  "wasm": "Wasm"
+  "wasm": "Wasm",
+  "webstorm": "WebStorm"
 }
