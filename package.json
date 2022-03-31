@@ -1,10 +1,10 @@
 {
   "name": "case-police",
+  "type": "module",
   "version": "0.0.1",
   "packageManager": "pnpm@6.32.3",
   "description": "",
   "keywords": [],
-  "type": "module",
   "homepage": "https://github.com/antfu/case-police#readme",
   "bugs": {
     "url": "https://github.com/antfu/case-police/issues"
@@ -25,13 +25,13 @@
       "types": "./dist/index.d.ts"
     }
   },
-  "bin": {
-    "case-police": "./bin/case-police.mjs"
-  },
   "files": [
     "dist",
     "bin"
   ],
+  "bin": {
+    "case-police": "./bin/case-police.mjs"
+  },
   "sideEffects": false,
   "scripts": {
     "build": "rimraf dist && unbuild",

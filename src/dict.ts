@@ -8,4 +8,5 @@ export const dictionary: Record<string, string> = {
   javascript: 'JavaScript',
   typescript: 'TypeScript',
   vscode: 'VS Code',
+  vueuse: 'VueUse',
 }
