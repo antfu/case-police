@@ -29,7 +29,8 @@
     "case-police": "./bin/case-police"
   },
   "files": [
-    "dist"
+    "dist",
+    "bin"
   ],
   "sideEffects": false,
   "scripts": {
