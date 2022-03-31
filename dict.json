@@ -27,15 +27,18 @@
   "macos": "macOS",
   "markdown": "Markdown",
   "markdownlint": "MarkdownLint",
+  "nextjs": "Next.js",
   "restful": "RESTful",
   "rxjs": "RxJS",
   "stackblitz": "StackBlitz",
   "sveltekit": "SvelteKit",
   "typescript": "TypeScript",
+  "vercel": "Vercel",
   "vitepress": "VitePress",
   "vscode": "VS Code",
   "vuepress": "VuePress",
   "vueuse": "VueUse",
   "wasm": "Wasm",
-  "webpack": "Webpack"
+  "webpack": "Webpack",
+  "wechat": "WeChat"
 }
