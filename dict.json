@@ -1,6 +1,8 @@
 {
+  "actionscript": "ActionScript",
   "airpods": "AirPods",
   "bitbucket": "Bitbucket",
+  "cmake": "CMake",
   "cjs": "CJS",
   "coffeescript": "CoffeeScript",
   "commonjs": "CommonJS",
@@ -21,12 +23,14 @@
   "ipad": "iPad",
   "iphone": "iPhone",
   "javascript": "JavaScript",
+  "jetbrains" : "JetBrains"
   "jquery": "jQuery",
   "latex": "LaTeX",
   "macbook": "MacBook",
   "macos": "macOS",
   "markdown": "Markdown",
   "markdownlint": "MarkdownLint",
+  "ocaml": "OCaml",
   "restful": "RESTful",
   "rxjs": "RxJS",
   "stackblitz": "StackBlitz",
