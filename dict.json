@@ -59,6 +59,7 @@
   "esm": "ESM",
   "esxi": "ESXi",
   "etcd": "etcd",
+  "faas": "FaaS",
   "facetime": "FaceTime",
   "ffmpeg": "FFmpeg",
   "filezilla": "FileZilla",
