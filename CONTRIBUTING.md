@@ -4,7 +4,7 @@ Glad to hear you are intrested in making contributions!
 
 ## Dictionary Guidelines
 
-Before you adding new entries to our dictionary, please read the following guidelines carefully.
+Before you add new entries to our dictionary, please read the following guidelines carefully.
 
 - The key in [dict.json](./dict.json) has to be in lowercase and alphabetically sorted.
 - Avoid entries that are common English words. (e.g. `Ruby`, `Android` could be matched in a common English sentence but not necessary refer to the brand/technology)
