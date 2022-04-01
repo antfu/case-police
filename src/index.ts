@@ -6,16 +6,16 @@ import parseIgnore from 'parse-gitignore'
 import isText from 'is-text-path'
 import pLimit from 'p-limit'
 import minimist from 'minimist'
-import dictionary from '../dict.json'
 import { version } from '../package.json'
-import { buildRegex, replace } from './utils'
+import { buildRegex, loadAllPresets, replace, resolvePreset } from './utils'
 
 async function run() {
   const argv = minimist(process.argv.slice(2), {
     boolean: ['fix', 'no-default'],
-    string: ['dict', 'disable', 'ignore'],
+    string: ['dict', 'disable', 'ignore', 'presets'],
     alias: {
       d: 'dict',
+      p: 'presets',
     },
   })
 
@@ -35,6 +35,31 @@ async function run() {
   if (argv.ignore)
     ignore.push(argv.ignore.split(',').map((i: string) => i.trim()))
   ignore = ignore.filter(Boolean)
+
+  let dictionary = {}
+
+  // presets
+  if (argv.presets) {
+    const presets = argv.presets
+
+    if (Array.isArray(presets)) {
+      presets.forEach(async(preset) => {
+        const content = await resolvePreset(preset)
+
+        dictionary = {
+          ...dictionary,
+          ...content,
+        }
+      })
+    }
+    else {
+      dictionary = await resolvePreset(presets)
+    }
+  }
+
+  // no presets
+  if (!argv.presets)
+    dictionary = await loadAllPresets()
 
   // dict
   let dict = argv['no-default'] ? {} : dictionary
@@ -65,7 +90,7 @@ async function run() {
   const wrote: string[] = []
   await Promise.all(files.map(file => limit(async() => {
     const code = await fs.readFile(file, 'utf-8')
-    const replaced = replace(code, file, dict, regex, disabled)
+    const replaced = await replace(code, file, dict, regex, disabled)
     if (replaced) {
       wrote.push(file)
       if (argv.fix)

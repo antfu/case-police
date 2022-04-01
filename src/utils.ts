@@ -1,6 +1,9 @@
 /* eslint-disable no-console */
+import { existsSync, promises as fs } from 'fs'
+import path from 'path'
 import c from 'picocolors'
-import dictionary from '../dict.json'
+
+const DICT_FOLDER = path.resolve(import.meta.url.slice(5), '..', '../dict')
 
 export const IGNORE_KEY = '@case-police-ignore'
 
@@ -10,13 +13,14 @@ export function buildRegex(dictionary: Record<string, string>): RegExp {
   return regex
 }
 
-export function replace(
+export async function replace(
   code: string,
   id: string,
-  dict: Record<string, string> = dictionary,
+  _dict?: Record<string, string>,
   regex?: RegExp,
   disabled: string[] = [],
-): string | undefined {
+): Promise<string | undefined> {
+  const dict = _dict || await loadAllPresets()
   if (code.includes(IGNORE_KEY))
     return
   regex = regex || buildRegex(dict)
@@ -39,4 +43,40 @@ export function replace(
   })
   if (changed)
     return code
+}
+
+export async function resolvePreset(preset: string) {
+  let result = {}
+  const file = `${preset}.json`
+  const p = path.join(DICT_FOLDER, file)
+
+  if (existsSync(p)) {
+    const content = await fs.readFile(p, 'utf-8')
+    result = {
+      ...result,
+      ...JSON.parse(content),
+    }
+  }
+  else {
+    // TODO throw a warning
+  }
+
+  return result
+}
+
+export async function loadAllPresets() {
+  let result = {}
+  const resolvers = await fs.readdir(DICT_FOLDER).then(dir =>
+    dir.map(async(file) => {
+      const preset = await resolvePreset(file.split('.')[0])
+      result = {
+        ...result,
+        ...preset,
+      }
+    }),
+  )
+
+  await Promise.all(resolvers)
+
+  return result
 }
