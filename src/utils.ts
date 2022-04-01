@@ -10,7 +10,13 @@ export function buildRegex(dictionary: Record<string, string>): RegExp {
   return regex
 }
 
-export function replace(code: string, id: string, dict: Record<string, string> = dictionary, regex?: RegExp): string | undefined {
+export function replace(
+  code: string,
+  id: string,
+  dict: Record<string, string> = dictionary,
+  regex?: RegExp,
+  disabled: string[] = [],
+): string | undefined {
   if (code.includes(IGNORE_KEY))
     return
   regex = regex || buildRegex(dict)
@@ -18,11 +24,17 @@ export function replace(code: string, id: string, dict: Record<string, string> =
   code = code.replace(regex, (_, key: string, index: number) => {
     if (!key.match(/[A-Z]/) || !key.match(/[a-z]/))
       return _
-    const value = dict[key.toLowerCase()]
+    const lower = key.toLowerCase()
+    if (disabled.includes(lower))
+      return _
+    const value = dict[lower]
     if (!value || value === key)
       return _
     changed = true
-    console.log(`${c.dim(`${id}:${index}`)} \t${c.yellow(key)} -> ${c.green(value)}`)
+    const lines = code.slice(0, index).split('\n')
+    const line = code.slice(0, index).split('\n').length
+    const col = (lines[lines.length - 1].length || 0) + 1
+    console.log(`${c.yellow(key)} ${c.dim('→')} ${c.green(value)} \t ${c.dim(`./${id}:${line}:${col}`)}`)
     return value
   })
   if (changed)
