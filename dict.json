@@ -41,6 +41,7 @@
   "dbase": "dBase",
   "ddos": "DDoS",
   "definitelytyped": "DefinitelyTyped",
+  "denodeploy":"DenoDeploy",
   "devops": "DevOps",
   "devtools": "DevTools",
   "dingtalk": "DingTalk",
@@ -67,6 +68,7 @@
   "ftp": "FTP",
   "ftps": "FTPS",
   "geforce": "GeForce",
+  "gitbook":"GitBook"
   "gitee": "Gitee",
   "github": "GitHub",
   "gitkraken": "GitKraken",
@@ -139,6 +141,7 @@
   "memcached": "Memcached",
   "messagepack": "MessagePack",
   "metamask": "MetaMask",
+  "mkdocs":"MkDocs",
   "mobx": "MobX",
   "mongodb": "MongoDB",
   "mongoose": "Mongoose",
