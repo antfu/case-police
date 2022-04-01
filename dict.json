@@ -221,6 +221,7 @@
   "ssh": "SSH",
   "ssl": "SSL",
   "sso": "SSO",
+  "stackit": "STACKIT",
   "stackblitz": "StackBlitz",
   "sveltekit": "SvelteKit",
   "svg": "SVG",
