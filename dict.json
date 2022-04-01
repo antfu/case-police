@@ -182,6 +182,7 @@
   "onedrive": "OneDrive",
   "onenote": "OneNote",
   "openai": "OpenAI",
+  "openapi": "OpenAPI",
   "opencv": "OpenCV",
   "openfaas": "OpenFaaS",
   "openflow": "OpenFlow",
