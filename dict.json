@@ -55,6 +55,7 @@
   "dynamodb": "DynamoDB",
   "echarts": "ECharts",
   "ecmascript": "ECMAScript",
+  "eggjs": "Egg.js",
   "elasticsearch": "Elasticsearch",
   "element plus": "Element Plus",
   "elementui": "ElementUI",
