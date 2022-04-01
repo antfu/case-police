@@ -60,6 +60,7 @@
   "esxi": "ESXi",
   "etcd": "etcd",
   "facetime": "FaceTime",
+  "fastapi":"FastAPI",
   "ffmpeg": "FFmpeg",
   "filezilla": "FileZilla",
   "freemarker": "FreeMarker",
