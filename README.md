@@ -43,6 +43,7 @@ npx case-police "**/*.md" path/to/file.html
 | `[...globs]` | Files or glob to be checked, if not provided, all the text files will be check |
 | `--fix` | Rewrite changes to file |
 | `-d, --dict <path>` | Custom dictionary JSON, will be merged with original dict |
+| `-p, --presets <preset | [presets]>` | Choose default [presets](/dict/). |
 | `--no-default` | Disable the default dictionary |
 | `--disable <rules>` | Disable rules, comma separated |
 | `--ignore <globs>` | Files or globs to be ignore, comma separated |
