@@ -1,6 +1,6 @@
 # Contributing
 
-Glad to hear you are intrested in making contributions!
+Glad to hear you are interested in making contributions!
 
 ## Dictionary Guidelines
 
