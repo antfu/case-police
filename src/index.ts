@@ -13,13 +13,14 @@ import { buildRegex, replace } from './utils'
 async function run() {
   const argv = minimist(process.argv.slice(2), {
     boolean: ['fix', 'no-default'],
-    string: ['dict', 'disable'],
+    string: ['dict', 'disable', 'ignore'],
     alias: {
       d: 'dict',
     },
   })
 
-  const ignore = [
+  // ignore
+  let ignore = [
     '*.log',
     '**/dist/**',
     '**/node_modules/**',
@@ -31,9 +32,12 @@ async function run() {
     const gitignore = await fs.readFile('.gitignore', 'utf8')
     ignore.push(...parseIgnore(gitignore))
   }
+  if (argv.ignore)
+    ignore.push(argv.ignore.split(',').map((i: string) => i.trim()))
+  ignore = ignore.filter(Boolean)
 
+  // dict
   let dict = argv['no-default'] ? {} : dictionary
-
   if (argv.dict) {
     const str = await fs.readFile(argv.dict, 'utf8')
     const userDict = JSON.parse(str)
@@ -43,10 +47,13 @@ async function run() {
     }
   }
 
-  const files = await fg('**/*.*', {
-    ignore,
-  }).then(files => files.filter(file => isText(file)))
+  // glob
+  if (!argv._.length)
+    argv._.push('**/*.*')
+  const files = await fg(argv._, { ignore })
+    .then(files => files.filter(file => isText(file)))
 
+  // check
   const disabled: string[] = (argv.disable ? argv.disable.split(',') : []).map((i: string) => i.trim().toLowerCase())
   const regex = buildRegex(dict)
 
