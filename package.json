@@ -29,7 +29,7 @@
   "files": [
     "dist",
     "bin",
-    "dict.json"
+    "dict"
   ],
   "bin": {
     "case-police": "./bin/case-police.mjs"

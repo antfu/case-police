@@ -1,0 +1,19 @@
+{
+  "aiaas": "AIaaS",
+  "baas": "BaaS",
+  "caas": "CaaS",
+  "daas": "DaaS",
+  "ddos": "DDoS",
+  "devops": "DevOps",
+  "devtools": "DevTools",
+  "esim": "eSIM",
+  "faas": "FaaS",
+  "iaas": "IaaS",
+  "ioc": "IoC",
+  "ipsec": "IPsec",
+  "mpaas": "mPaaS",
+  "paas": "PaaS",
+  "saas": "SaaS",
+  "wifi": "Wi-Fi",
+  "xaas": "XaaS"
+}
