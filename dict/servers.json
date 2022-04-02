@@ -1,5 +1,6 @@
 {
   "apache": "Apache",
+  "apache tomcat": "Apache Tomcat",
   "apache tomee": "Apache TomEE",
   "aws amplify": "AWS Amplify",
   "ias": "IAS",
