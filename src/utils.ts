@@ -1,9 +1,10 @@
 /* eslint-disable no-console */
 import { existsSync, promises as fs } from 'fs'
 import path from 'path'
+import { fileURLToPath } from 'url'
 import c from 'picocolors'
 
-const DICT_FOLDER = path.resolve(import.meta.url.slice(5), '..', '../dict')
+const DICT_FOLDER = path.resolve(fileURLToPath(import.meta.url), '../../dict')
 
 export const IGNORE_KEY = '@case-police-ignore'
 
@@ -58,25 +59,16 @@ export async function resolvePreset(preset: string) {
     }
   }
   else {
-    // TODO throw a warning
+    throw new Error(`Preset "${preset}" not found`)
   }
 
   return result
 }
 
 export async function loadAllPresets() {
-  let result = {}
-  const resolvers = await fs.readdir(DICT_FOLDER).then(dir =>
-    dir.map(async(file) => {
-      const preset = await resolvePreset(file.split('.')[0])
-      result = {
-        ...result,
-        ...preset,
-      }
-    }),
+  const files = await fs.readdir(DICT_FOLDER)
+  return Object.assign(
+    {},
+    ...await Promise.all(files.map(file => resolvePreset(file.split('.')[0]))),
   )
-
-  await Promise.all(resolvers)
-
-  return result
 }

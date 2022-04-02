@@ -24,7 +24,7 @@ vscode VScode VS Code VSCODE vs code VS code
 
 describe('presets', () => {
   it('works', async() => {
-    const applePreset = await resolvePreset('apple')
+    const applePreset = await resolvePreset('softwares')
 
     const replaced = await replace(
       `
@@ -35,7 +35,7 @@ describe('presets', () => {
     )
 
     expect(replaced).toBe(`
-      macOS MacBook
+      macOS Macbook
     `)
   })
 })

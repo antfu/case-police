@@ -8,7 +8,7 @@
 - Type**S**cript, not *Typescript*
 - **m**acOS, not *MacOS*
 - **VS C**ode, not *Vscode*
-- [...](./dict.json)
+- [...](./dict)
 
 Make the case correct, PLEASE!
 
@@ -20,7 +20,7 @@ Make the case correct, PLEASE!
 npx case-police --fix
 ```
 
-It will scan all your source files and fix the cases of [known names](./dict.json).
+It will scan all your source files and fix the cases of [known names](./dict).
 
 Only the word including both uppercase and lowercase will be fixed. (e.g. `Github` -> `GitHub`; `github` and `GITHUB` will be left untouched).
 
@@ -43,7 +43,7 @@ npx case-police "**/*.md" path/to/file.html
 | `[...globs]` | Files or glob to be checked, if not provided, all the text files will be check |
 | `--fix` | Rewrite changes to file |
 | `-d, --dict <path>` | Custom dictionary JSON, will be merged with original dict |
-| `-p, --presets <preset>` | Choose default [presets](/dict/) |
+| `-p, --presets <presets>` | Filter the default [presets](./dict), comma separated |
 | `--no-default` | Disable the default dictionary |
 | `--disable <rules>` | Disable rules, comma separated |
 | `--ignore <globs>` | Files or globs to be ignore, comma separated |

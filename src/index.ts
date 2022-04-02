@@ -39,27 +39,22 @@ async function run() {
   let dictionary = {}
 
   // presets
-  if (argv.presets) {
-    const presets = argv.presets
-
-    if (Array.isArray(presets)) {
-      presets.forEach(async(preset) => {
-        const content = await resolvePreset(preset)
-
-        dictionary = {
-          ...dictionary,
-          ...content,
-        }
-      })
-    }
-    else {
-      dictionary = await resolvePreset(presets)
-    }
+  const presets: string[] = (argv.presets || '')
+    .split(',')
+    .map((i: string) => i.trim())
+    .filter(Boolean)
+  if (argv['no-default']) {
+    // nothing
   }
-
-  // no presets
-  if (!argv.presets)
+  else if (presets.length) {
+    Object.assign(
+      dictionary,
+      ...await Promise.all(presets.map(resolvePreset)),
+    )
+  }
+  else {
     dictionary = await loadAllPresets()
+  }
 
   // dict
   let dict = argv['no-default'] ? {} : dictionary
@@ -86,7 +81,7 @@ async function run() {
   console.log()
   console.log(c.inverse(c.red(' Case ')) + c.inverse(c.blue(' Police ')) + c.dim(` v${version}`))
   console.log()
-  console.log(c.blue(files.length) + c.dim(' files found for checking\n'))
+  console.log(c.blue(files.length) + c.dim(' files found for checking, ') + c.cyan(Object.keys(dictionary).length) + c.dim(' words loaded\n'))
   const wrote: string[] = []
   await Promise.all(files.map(file => limit(async() => {
     const code = await fs.readFile(file, 'utf-8')

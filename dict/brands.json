@@ -1,0 +1,20 @@
+{
+  "airbnb": "Airbnb",
+  "alphago": "AlphaGo",
+  "bitbucket": "Bitbucket",
+  "circleci": "CircleCI",
+  "gitee": "Gitee",
+  "github": "GitHub",
+  "gitlab": "GitLab",
+  "gitops": "GitOps",
+  "gitpod": "Gitpod",
+  "ibm": "IBM",
+  "kfc": "KFC",
+  "leetcode": "LeetCode",
+  "linkedin": "LinkedIn",
+  "mcdonald": "McDonald",
+  "nvidia": "NVIDIA",
+  "stackblitz": "StackBlitz",
+  "stackit": "STACKIT",
+  "youtube": "YouTube"
+}
