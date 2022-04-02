@@ -27,6 +27,7 @@
   "cityjson": "CityJSON",
   "clashx": "ClashX",
   "clickhouse": "ClickHouse",
+  "ckeditor": "CKEditor",
   "cmake": "CMake",
   "cockroachdb": "CockroachDB",
   "codepen": "CodePen",
@@ -250,5 +251,6 @@
   "wireguard": "WireGuard",
   "wordpress": "WordPress",
   "xmind": "XMind",
+  "xstate": "XState",
   "yapi": "YApi"
 }
