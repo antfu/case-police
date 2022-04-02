@@ -1,0 +1,17 @@
+{
+  "apache": "Apache",
+  "apache tomee": "Apache TomEE",
+  "aws amplify": "AWS Amplify",
+  "ias": "IAS",
+  "iis": "IIS",
+  "jboss": "JBoss",
+  "jetty": "Jetty",
+  "ktor": "Ktor",
+  "netlify": "Netlify",
+  "netty": "Netty",
+  "nginx": "Nginx",
+  "tomcat": "Tomcat",
+  "vercel": "Vercel",
+  "weblogic": "WebLogic",
+  "wildfly": "WildFly"
+}
