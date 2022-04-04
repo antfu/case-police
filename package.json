@@ -1,7 +1,7 @@
 {
   "name": "case-police",
   "type": "module",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "packageManager": "pnpm@6.32.3",
   "description": "Make the case correct, PLEASE!",
   "keywords": [],
