@@ -9,7 +9,7 @@ const DICT_FOLDER = path.resolve(fileURLToPath(import.meta.url), '../../dict')
 export const IGNORE_KEY = '@case-police-ignore'
 export const DISABLE_KEY = '@case-police-disable'
 
-export const IGNORE_REGEX = /@case-police-ignore\s+([^\s]+)/
+export const IGNORE_REGEX = /@case-police-ignore\s+([^\s]+)/g
 
 export function buildRegex(dictionary: Record<string, string>): RegExp {
   const keys = Object.keys(dictionary)
