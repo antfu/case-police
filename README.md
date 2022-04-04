@@ -48,6 +48,18 @@ npx case-police "**/*.md" path/to/file.html
 | `--disable <rules>` | Disable rules, comma separated |
 | `--ignore <globs>` | Files or globs to be ignore, comma separated |
 
+### Ignores
+
+You can add `@case-police-disable` in your file to disable the case chack for the particular file, or add `@case-police-ignore xxx` to ignore certain words in that file.
+
+For example:
+
+```ts
+// @case-police-ignore Uri
+
+console.log(something.Uri.path)
+```
+
 ## Sponsors
 
 <p align="center">

@@ -7,6 +7,9 @@ import c from 'picocolors'
 const DICT_FOLDER = path.resolve(fileURLToPath(import.meta.url), '../../dict')
 
 export const IGNORE_KEY = '@case-police-ignore'
+export const DISABLE_KEY = '@case-police-disable'
+
+export const IGNORE_REGEX = /@case-police-ignore\s+([^\s]+)/
 
 export function buildRegex(dictionary: Record<string, string>): RegExp {
   const keys = Object.keys(dictionary)
@@ -19,18 +22,26 @@ export async function replace(
   id: string,
   _dict?: Record<string, string>,
   regex?: RegExp,
-  disabled: string[] = [],
+  _ignore: string[] = [],
 ): Promise<string | undefined> {
-  const dict = _dict || await loadAllPresets()
-  if (code.includes(IGNORE_KEY))
+  if (code.includes(DISABLE_KEY))
     return
+
+  const dict = _dict || await loadAllPresets()
+  const ignore = _ignore.slice()
+
+  Array.from(code.matchAll(IGNORE_REGEX)).forEach((match) => {
+    const [, key] = match
+    ignore.push(...key.split(',').map(k => k.trim().toLowerCase()).filter(Boolean))
+  })
+
   regex = regex || buildRegex(dict)
   let changed = false
   code = code.replace(regex, (_, key: string, index: number) => {
     if (!key.match(/[A-Z]/) || !key.match(/[a-z]/))
       return _
     const lower = key.toLowerCase()
-    if (disabled.includes(lower))
+    if (ignore.includes(lower))
       return _
     const value = dict[lower]
     if (!value || value === key)
