@@ -9,6 +9,7 @@ describe('should', () => {
       `
 Github GitHub github GITHUB
 vscode VScode VS Code VSCODE vs code VS code
+nextjs Nextjs NextJS Next.js
 `,
       '',
     )
@@ -17,6 +18,7 @@ vscode VScode VS Code VSCODE vs code VS code
   "
   GitHub GitHub github GITHUB
   vscode VS Code VS Code VSCODE vs code VS Code
+  nextjs Next.js Next.js Next.js
   "
 `)
   })
