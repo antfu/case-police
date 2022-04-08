@@ -22,6 +22,7 @@ async function run() {
   // ignore
   let ignore = [
     '*.log',
+    '*.min.*',
     '**/dist/**',
     '**/node_modules/**',
     'package-lock.json',
