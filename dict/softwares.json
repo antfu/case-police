@@ -264,5 +264,7 @@
   "yapi": "YApi",
   "vividcortex": "VividCortex",
   "solarwinds": "SolarWinds",
-  "hackernews": "Hacker News"
+  "hackernews": "Hacker News",
+  "datadog": "Datadog",
+  "newrelic": "New Relic"
 }
