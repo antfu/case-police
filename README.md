@@ -68,6 +68,10 @@ console.log(something.Uri.path)
   </a>
 </p>
 
+## Related Projects
+
+[actions-case-police](https://github.com/Namchee/actions-case-police). Use the correct letter case in GitHub issues and pull requests
+
 ## License
 
 [MIT](./LICENSE) License © 2021 [Anthony Fu](https://github.com/antfu)
