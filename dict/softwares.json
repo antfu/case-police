@@ -261,5 +261,8 @@
   "wordpress": "WordPress",
   "xmind": "XMind",
   "xstate": "XState",
-  "yapi": "YApi"
+  "yapi": "YApi",
+  "vividcortex": "VividCortex",
+  "solarwinds": "SolarWinds",
+  "hackernews": "Hacker News"
 }
