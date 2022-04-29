@@ -67,6 +67,7 @@
   "oss": "OSS",
   "pdf": "PDF",
   "pdo": "PDO",
+  "posix": "POSIX",
   "pwa": "PWA",
   "qemu": "QEMU",
   "qgis": "QGIS",
