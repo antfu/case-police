@@ -44,18 +44,19 @@ describe('presets', () => {
   })
 })
 
-describe('utf8', () => {
-  it('works', async() => {
-    let preset = {}
-    const presetFilePath = path.join(__dirname, './dict/utf8.json')
-    if (existsSync(presetFilePath)) {
-      const content = await fs.readFile(presetFilePath, 'utf-8')
-      preset = { ...JSON.parse(content) }
-    }
+describe('utf8', async() => {
+  let preset = {}
+  const presetFilePath = path.join(__dirname, './dict/utf8.json')
+  if (existsSync(presetFilePath)) {
+    const content = await fs.readFile(presetFilePath, 'utf-8')
+    preset = { ...JSON.parse(content) }
+  }
 
+  it('works', async() => {
     const replaced = await replace(
       `
       Romania romania
+      Domâ Dom âDom ĕDomĕ
     `,
       '',
       preset,
@@ -64,6 +65,7 @@ describe('utf8', () => {
     expect(replaced).toMatchInlineSnapshot(`
       "
             România romania
+            Domâ DOM âDom ĕDomĕ
           "
     `)
   })

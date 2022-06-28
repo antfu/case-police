@@ -11,6 +11,8 @@ export const DISABLE_KEY = '@case-police-disable'
 
 export const IGNORE_REGEX = /@case-police-ignore\s+([^\s]+)/g
 
+export const UTF8_RANGE = '[\u0080-\uFFFF]'
+
 export function buildRegex(dictionary: Record<string, string>): RegExp {
   const keys = Object.keys(dictionary)
   const regex = new RegExp(`\\b(${keys.join('|')})\\b`, 'gi')
@@ -38,6 +40,9 @@ export async function replace(
   regex = regex || buildRegex(dict)
   let changed = false
   code = code.replace(regex, (_, key: string, index: number) => {
+    if (containsUTF8(code, key, index))
+      return _
+
     if (!key.match(/[A-Z]/) || !key.match(/[a-z]/))
       return _
     const lower = key.toLowerCase()
@@ -82,4 +87,11 @@ export async function loadAllPresets() {
     {},
     ...await Promise.all(files.map(file => resolvePreset(file.split('.')[0]))),
   )
+}
+
+function containsUTF8(code: string, key: string, index: number) {
+  const utf8Regex = new RegExp(`${UTF8_RANGE}`)
+  const head = code.charAt(index - 1)
+  const tail = code.charAt(index + key.length)
+  return utf8Regex.test(head) || utf8Regex.test(tail)
 }
