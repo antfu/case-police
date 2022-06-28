@@ -1,3 +1,5 @@
+import path from 'path'
+import { existsSync, promises as fs } from 'fs'
 import { describe, expect, it } from 'vitest'
 import { replace, resolvePreset } from '../src/utils'
 
@@ -38,6 +40,31 @@ describe('presets', () => {
 
     expect(replaced).toBe(`
       macOS Macbook
+    `)
+  })
+})
+
+describe('utf8', () => {
+  it('works', async() => {
+    let preset = {}
+    const presetFilePath = path.join(__dirname, './dict/utf8.json')
+    if (existsSync(presetFilePath)) {
+      const content = await fs.readFile(presetFilePath, 'utf-8')
+      preset = { ...JSON.parse(content) }
+    }
+
+    const replaced = await replace(
+      `
+      Romania romania
+    `,
+      '',
+      preset,
+    )
+
+    expect(replaced).toMatchInlineSnapshot(`
+      "
+            România romania
+          "
     `)
   })
 })
