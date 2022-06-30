@@ -66,6 +66,8 @@ async function run() {
       ...dict,
       ...userDict,
     }
+
+    ignore.push(argv.dict)
   }
 
   // glob
