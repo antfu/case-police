@@ -6,7 +6,7 @@ import { replace, resolvePreset } from '../src/utils'
 /** @case-police-ignore */
 
 describe('should', () => {
-  it('works', async() => {
+  it('works', async () => {
     const replaced = await replace(
       `
 Github GitHub github GITHUB
@@ -27,7 +27,7 @@ nextjs Nextjs NextJS Next.js
 })
 
 describe('presets', () => {
-  it('works', async() => {
+  it('works', async () => {
     const applePreset = await resolvePreset('softwares')
 
     const replaced = await replace(
@@ -44,7 +44,7 @@ describe('presets', () => {
   })
 })
 
-describe('utf8', async() => {
+describe('utf8', async () => {
   let preset = {}
   const presetFilePath = path.join(__dirname, './dict/utf8.json')
   if (existsSync(presetFilePath)) {
@@ -52,7 +52,7 @@ describe('utf8', async() => {
     preset = { ...JSON.parse(content) }
   }
 
-  it('works', async() => {
+  it('works', async () => {
     const replaced = await replace(
       `
       Romania romania

@@ -35,7 +35,7 @@
   "http": "HTTP",
   "https": "HTTPS",
   "iife": "IIFE",
-  "ipc" : "IPC",
+  "ipc": "IPC",
   "ipfs": "IPFS",
   "ipmi": "IPMI",
   "jdbc": "JDBC",

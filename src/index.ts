@@ -30,7 +30,7 @@ async function run() {
     'yarn.lock',
   ]
   if (existsSync('.gitignore')) {
-    const gitignore = await fs.readFile('.gitignore', 'utf8')
+    const gitignore = await fs.readFile('.gitignore', 'utf8') 
     ignore.push(...parseIgnore(gitignore))
   }
   if (argv.ignore)
@@ -86,7 +86,7 @@ async function run() {
   console.log()
   console.log(c.blue(files.length) + c.dim(' files found for checking, ') + c.cyan(Object.keys(dictionary).length) + c.dim(' words loaded\n'))
   const wrote: string[] = []
-  await Promise.all(files.map(file => limit(async() => {
+  await Promise.all(files.map(file => limit(async () => {
     const code = await fs.readFile(file, 'utf-8')
     const replaced = await replace(code, file, dict, regex, disabled)
     if (replaced) {
