@@ -30,7 +30,7 @@ async function run() {
     'yarn.lock',
   ]
   if (existsSync('.gitignore')) {
-    const gitignore = await fs.readFile('.gitignore', 'utf8') 
+    const gitignore = await fs.readFile('.gitignore', 'utf8')
     ignore.push(...parseIgnore(gitignore))
   }
   if (argv.ignore)
