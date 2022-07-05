@@ -249,6 +249,7 @@
   "wasm": "Wasm",
   "watchos": "watchOS",
   "webar": "WebAR",
+  "web assembly": "WebAssembly",
   "webassembly": "WebAssembly",
   "webgl": "WebGL",
   "webgpu": "WebGPU",
