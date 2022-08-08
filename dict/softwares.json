@@ -266,6 +266,7 @@
   "webgl": "WebGL",
   "webgpu": "WebGPU",
   "webkit": "WebKit",
+  "webpack": "webpack",
   "webrtc": "WebRTC",
   "websocket": "WebSocket",
   "webstorm": "WebStorm",
