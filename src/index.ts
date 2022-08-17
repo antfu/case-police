@@ -34,7 +34,7 @@ async function run() {
     ignore.push(...parseIgnore(gitignore))
   }
   if (argv.ignore)
-    ignore.push(argv.ignore.split(',').map((i: string) => i.trim()))
+    ignore.push(...argv.ignore.split(',').map((i: string) => i.trim()))
   ignore = ignore.filter(Boolean)
 
   let dictionary = {}
