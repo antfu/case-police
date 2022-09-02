@@ -20,8 +20,8 @@
   "pagerduty": "PagerDuty",
   "producthunt": "Product Hunt",
   "stackblitz": "StackBlitz",
-  "stackoverflow": "Stack Overflow",
   "stackit": "STACKIT",
+  "stackoverflow": "Stack Overflow",
   "v2ex": "V2EX",
   "youtube": "YouTube"
 }
