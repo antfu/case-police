@@ -1,7 +1,7 @@
 {
   "name": "case-police",
   "type": "module",
-  "version": "0.5.12",
+  "version": "0.5.13",
   "packageManager": "pnpm@7.4.0",
   "description": "Make the case correct, PLEASE!",
   "author": "Anthony Fu <anthonyfu117@hotmail.com>",
