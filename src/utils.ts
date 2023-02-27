@@ -15,7 +15,7 @@ export const UTF8_RANGE = '[\u0080-\uFFFF]'
 
 export function buildRegex(dictionary: Record<string, string>): RegExp {
   const keys = Object.keys(dictionary)
-  const regex = new RegExp(`\\b(${keys.join('|')})\\b`, 'gi')
+  const regex = new RegExp(`\\b(${keys.join('|').replace(/\+/g, '\\+')})\\b`, 'gi')
   return regex
 }
 
