@@ -227,7 +227,6 @@
   "springboot": "SpringBoot",
   "springcloud": "SpringCloud",
   "springmvc": "SpringMVC",
-  "sql": "SQL",
   "sqlite": "SQLite",
   "sqlserver": "SQLServer",
   "storybook": "Storybook",
