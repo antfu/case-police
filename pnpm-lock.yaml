@@ -1,54 +1,50 @@
 lockfileVersion: 5.4
 
-importers:
+specifiers:
+  '@antfu/eslint-config': ^0.35.3
+  '@antfu/ni': ^0.20.0
+  '@babel/types': ^7.21.2
+  '@types/minimist': ^1.2.2
+  '@types/node': ^18.14.2
+  bumpp: ^9.0.0
+  eslint: ^8.35.0
+  esno: ^0.16.3
+  fast-glob: ^3.2.12
+  is-binary-path: ^2.1.0
+  is-text-path: ^2.0.0
+  minimist: ^1.2.8
+  p-limit: ^4.0.0
+  parse-gitignore: ^2.0.0
+  picocolors: ^1.0.0
+  pnpm: ^7.28.0
+  rimraf: ^4.1.2
+  typescript: ^4.9.5
+  unbuild: ^1.1.2
+  vite: ^4.1.4
+  vitest: ^0.29.1
 
-  .:
-    specifiers:
-      '@antfu/eslint-config': ^0.35.3
-      '@antfu/ni': ^0.20.0
-      '@babel/types': ^7.21.2
-      '@types/minimist': ^1.2.2
-      '@types/node': ^18.14.2
-      '@types/parse-gitignore': ^1.0.0
-      bumpp: ^9.0.0
-      eslint: ^8.35.0
-      esno: ^0.16.3
-      fast-glob: ^3.2.12
-      is-binary-path: ^2.1.0
-      is-text-path: ^2.0.0
-      minimist: ^1.2.8
-      p-limit: ^4.0.0
-      parse-gitignore: ^2.0.0
-      picocolors: ^1.0.0
-      pnpm: ^7.28.0
-      rimraf: ^4.1.2
-      typescript: ^4.9.5
-      unbuild: ^1.1.2
-      vite: ^4.1.4
-      vitest: ^0.29.1
-    devDependencies:
-      '@antfu/eslint-config': 0.35.3_ycpbpc6yetojsgtrx3mwntkhsu
-      '@antfu/ni': 0.20.0
-      '@babel/types': 7.21.2
-      '@types/minimist': 1.2.2
-      '@types/node': 18.14.2
-      '@types/parse-gitignore': 1.0.0
-      bumpp: 9.0.0
-      eslint: 8.35.0
-      esno: 0.16.3
-      fast-glob: 3.2.12
-      is-binary-path: 2.1.0
-      is-text-path: 2.0.0
-      minimist: 1.2.8
-      p-limit: 4.0.0
-      parse-gitignore: 2.0.0
-      picocolors: 1.0.0
-      pnpm: 7.28.0
-      rimraf: 4.1.2
-      typescript: 4.9.5
-      unbuild: 1.1.2
-      vite: 4.1.4_@types+node@18.14.2
-      vitest: 0.29.1
+devDependencies:
+  '@antfu/eslint-config': 0.35.3_ycpbpc6yetojsgtrx3mwntkhsu
+  '@antfu/ni': 0.20.0
+  '@babel/types': 7.21.2
+  '@types/minimist': 1.2.2
+  '@types/node': 18.14.2
+  bumpp: 9.0.0
+  eslint: 8.35.0
+  esno: 0.16.3
+  fast-glob: 3.2.12
+  is-binary-path: 2.1.0
+  is-text-path: 2.0.0
+  minimist: 1.2.8
+  p-limit: 4.0.0
+  parse-gitignore: 2.0.0
+  picocolors: 1.0.0
+  pnpm: 7.28.0
+  rimraf: 4.1.2
+  typescript: 4.9.5
+  unbuild: 1.1.2
+  vite: 4.1.4_@types+node@18.14.2
+  vitest: 0.29.1
 
 packages:
 
@@ -1049,12 +1045,6 @@ packages:
 
   /@types/normalize-package-data/2.4.0:
     resolution: {integrity: sha512-f5j5b/Gf71L+dbqxIpQ4Z2WlmI/mPJ0fOkGGmFgtb6sAu97EPczzbS3/tJKxmcYDj55OX6ssqwDAWOHIYDRDGA==}
-    dev: true
-
-  /@types/parse-gitignore/1.0.0:
-    resolution: {integrity: sha512-GCL7NIxhUzJ1M5bp68T8DtDVTbQdw93MPIIII+YASs3icSozMEG9ZjX7pp7ldRJrVgrRtJBwy+/g+aBzCIttlg==}
-    dependencies:
-      '@types/node': 18.14.2
     dev: true
 
   /@types/resolve/1.20.2:

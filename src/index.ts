@@ -31,7 +31,7 @@ async function run() {
   ]
   if (existsSync('.gitignore')) {
     const gitignore = await fs.readFile('.gitignore', 'utf8')
-    ignore.push(...parseIgnore(gitignore))
+    ignore.push(...parseIgnore(gitignore).patterns)
   }
   if (argv.ignore)
     ignore.push(...argv.ignore.split(',').map((i: string) => i.trim()))
