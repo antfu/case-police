@@ -1,5 +1,5 @@
-import path from 'path'
-import { existsSync, promises as fs } from 'fs'
+import path from 'node:path'
+import { existsSync, promises as fs } from 'node:fs'
 import { describe, expect, it } from 'vitest'
 import { replace, resolvePreset } from '../src/utils'
 

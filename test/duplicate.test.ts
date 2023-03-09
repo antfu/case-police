@@ -14,7 +14,7 @@ describe('duplicate', () => {
 
     const duplicates: any[] = []
 
-    Object.keys(allPresets).forEach((value, key) => {
+    Object.keys(allPresets).forEach((value) => {
       const matched = presets.filter(preset => preset.preset[value])
       if (matched.length > 1) {
         duplicates.push({

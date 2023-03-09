@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
-import { existsSync, promises as fs } from 'fs'
-import path from 'path'
-import { fileURLToPath } from 'url'
+import { existsSync, promises as fs } from 'node:fs'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 import c from 'picocolors'
 
 const DICT_FOLDER = path.resolve(fileURLToPath(import.meta.url), '../../dict')

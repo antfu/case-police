@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { existsSync, promises as fs } from 'fs'
+import { existsSync, promises as fs } from 'node:fs'
 import fg from 'fast-glob'
 import c from 'picocolors'
 import parseIgnore from 'parse-gitignore'
