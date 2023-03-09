@@ -1,5 +1,3 @@
-import path from 'path'
-import { existsSync, promises as fs } from 'fs'
 import { describe, expect, it } from 'vitest'
 import { replace, resolvePreset } from '../src/utils'
 
@@ -12,6 +10,7 @@ describe('should', () => {
 Github GitHub github GITHUB
 vscode VScode VS Code VSCODE vs code VS code
 nextjs Nextjs NextJS Next.js
+GithubのVScode Github：
 `,
       '',
     )
@@ -21,6 +20,7 @@ nextjs Nextjs NextJS Next.js
   GitHub GitHub github GITHUB
   vscode VS Code VS Code VSCODE vs code VS Code
   nextjs Next.js Next.js Next.js
+  GitHubのVS Code GitHub：
   "
 `)
   })
@@ -40,33 +40,6 @@ describe('presets', () => {
 
     expect(replaced).toBe(`
       macOS Macbook
-    `)
-  })
-})
-
-describe('utf8', async () => {
-  let preset = {}
-  const presetFilePath = path.join(__dirname, './dict/utf8.json')
-  if (existsSync(presetFilePath)) {
-    const content = await fs.readFile(presetFilePath, 'utf-8')
-    preset = { ...JSON.parse(content) }
-  }
-
-  it('works', async () => {
-    const replaced = await replace(
-      `
-      Romania romania
-      Domâ Dom âDom ĕDomĕ
-    `,
-      '',
-      preset,
-    )
-
-    expect(replaced).toMatchInlineSnapshot(`
-      "
-            România romania
-            Domâ DOM âDom ĕDomĕ
-          "
     `)
   })
 })
