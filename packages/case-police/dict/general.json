@@ -14,7 +14,7 @@
   "mpaas": "mPaaS",
   "paas": "PaaS",
   "saas": "SaaS",
+  "tsconfig": "TSConfig",
   "wifi": "Wi-Fi",
-  "xaas": "XaaS",
-  "tsconfig": "TSConfig"
+  "xaas": "XaaS"
 }
