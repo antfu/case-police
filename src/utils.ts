@@ -19,25 +19,19 @@ export function buildRegex(dictionary: Record<string, string>): RegExp {
   return regex
 }
 
-export async function replace(
+export const replaceProcess = (
   code: string,
-  id: string,
-  _dict?: Record<string, string>,
+  dict: Record<string, string>,
+  ignore: string[] = [],
+  output?: (code: string, index: number, key: string, value: string) => void,
   regex?: RegExp,
-  _ignore: string[] = [],
-): Promise<string | undefined> {
-  if (code.includes(DISABLE_KEY))
-    return
-
-  const dict = _dict || await loadAllPresets()
-  const ignore = _ignore.slice()
-
+) => {
+  regex = regex || buildRegex(dict)
   Array.from(code.matchAll(IGNORE_REGEX)).forEach((match) => {
     const [, key] = match
     ignore.push(...key.split(',').map(k => k.trim().toLowerCase()).filter(Boolean))
   })
 
-  regex = regex || buildRegex(dict)
   let changed = false
   code = code.replace(regex, (_, key: string, index: number) => {
     if (containsUTF8(code, key, index))
@@ -52,14 +46,37 @@ export async function replace(
     if (!value || value === key)
       return _
     changed = true
-    const lines = code.slice(0, index).split('\n')
-    const line = lines.length
-    const col = (lines[line - 1].length || 0) + 1
-    console.log(`${c.yellow(key)} ${c.dim('→')} ${c.green(value)} \t ${c.dim(`./${id}:${line}:${col}`)}`)
+    output?.(code, index, key, value)
     return value
   })
   if (changed)
     return code
+}
+
+export async function replace(
+  code: string,
+  id: string,
+  _dict?: Record<string, string>,
+  regex?: RegExp,
+  _ignore: string[] = [],
+): Promise<string | undefined> {
+  if (code.includes(DISABLE_KEY))
+    return
+
+  const dict = _dict || await loadAllPresets()
+  const ignore = _ignore.slice()
+
+  return replaceProcess(
+    code,
+    dict,
+    ignore,
+    (code, index, key, value) => {
+      const lines = code.slice(0, index).split('\n')
+      const line = lines.length
+      const col = (lines[line - 1].length || 0) + 1
+      console.log(`${c.yellow(key)} ${c.dim('→')} ${c.green(value)} \t ${c.dim(`./${id}:${line}:${col}`)}`)
+    },
+    regex)
 }
 
 export async function resolvePreset(preset: string) {
