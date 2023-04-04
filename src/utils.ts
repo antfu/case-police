@@ -4,7 +4,7 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import c from 'picocolors'
 
-const DICT_FOLDER = path.resolve(fileURLToPath(import.meta.url), '../../dict')
+export const DICT_FOLDER = path.resolve(fileURLToPath(import.meta.url), '../../dict')
 
 export const IGNORE_KEY = '@case-police-ignore'
 export const DISABLE_KEY = '@case-police-disable'
@@ -17,6 +17,40 @@ export function buildRegex(dictionary: Record<string, string>): RegExp {
   const keys = Object.keys(dictionary)
   const regex = new RegExp(`\\b(${keys.join('|').replace(/\+/g, '\\+')})\\b`, 'gi')
   return regex
+}
+
+export const replaceCore = (
+  code: string,
+  dict: Record<string, string>,
+  ignore: string[] = [],
+  output?: (code: string, index: number, key: string, value: string) => void,
+  regex?: RegExp,
+) => {
+  regex = regex || buildRegex(dict)
+  Array.from(code.matchAll(IGNORE_REGEX)).forEach((match) => {
+    const [, key] = match
+    ignore.push(...key.split(',').map(k => k.trim().toLowerCase()).filter(Boolean))
+  })
+
+  let changed = false
+  code = code.replace(regex, (_, key: string, index: number) => {
+    if (containsUTF8(code, key, index))
+      return _
+
+    if (!key.match(/[A-Z]/) || !key.match(/[a-z]/))
+      return _
+    const lower = key.toLowerCase()
+    if (ignore.includes(lower))
+      return _
+    const value = dict[lower]
+    if (!value || value === key)
+      return _
+    changed = true
+    output?.(code, index, key, value)
+    return value
+  })
+  if (changed)
+    return code
 }
 
 export async function replace(
@@ -32,34 +66,20 @@ export async function replace(
   const dict = _dict || await loadAllPresets()
   const ignore = _ignore.slice()
 
-  Array.from(code.matchAll(IGNORE_REGEX)).forEach((match) => {
-    const [, key] = match
-    ignore.push(...key.split(',').map(k => k.trim().toLowerCase()).filter(Boolean))
-  })
-
-  regex = regex || buildRegex(dict)
-  let changed = false
-  code = code.replace(regex, (_, key: string, index: number) => {
-    if (containsUTF8(code, key, index))
-      return _
-
-    if (!key.match(/[A-Z]/) || !key.match(/[a-z]/))
-      return _
-    const lower = key.toLowerCase()
-    if (ignore.includes(lower))
-      return _
-    const value = dict[lower]
-    if (!value || value === key)
-      return _
-    changed = true
+  const output = (code: string, index: number, key: string, value: string) => {
     const lines = code.slice(0, index).split('\n')
     const line = lines.length
     const col = (lines[line - 1].length || 0) + 1
     console.log(`${c.yellow(key)} ${c.dim('→')} ${c.green(value)} \t ${c.dim(`./${id}:${line}:${col}`)}`)
-    return value
-  })
-  if (changed)
-    return code
+  }
+
+  return replaceCore(
+    code,
+    dict,
+    ignore,
+    output,
+    regex,
+  )
 }
 
 export async function resolvePreset(preset: string) {

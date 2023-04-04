@@ -1,0 +1,24 @@
+{
+  "name": "eslint-plugin-case-police",
+  "version": "0.0.1",
+  "license": "MIT",
+  "homepage": "https://github.com/antfu/case-police#readme",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "postinstall": "esno script/generateDict",
+    "build": "rimraf dist && unbuild",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "@typescript-eslint/utils": "^5.57.1"
+  },
+  "devDependencies": {
+    "@typescript-eslint/parser": "^5.57.1",
+    "esno": "^0.16.3"
+  }
+}
