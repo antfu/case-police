@@ -80,7 +80,7 @@ export default createEslintRule<Options, MessageIds>({
     const dict = mergeDict(options)
 
     return {
-      Literal: async (node) => {
+      Literal: (node) => {
         if (typeof node.value === 'string') {
           const replaced = replaceCore(node.value, dict, [])
 
@@ -93,6 +93,19 @@ export default createEslintRule<Options, MessageIds>({
               },
             })
           }
+        }
+      },
+      TemplateElement: (node) => {
+        const replaced = replaceCore(node.value.raw, dict, [])
+
+        if (replaced) {
+          context.report({
+            messageId: 'spellError',
+            node,
+            fix(fixer) {
+              return fixer.replaceText(node, `\`${replaced}\``)
+            },
+          })
         }
       },
     }
