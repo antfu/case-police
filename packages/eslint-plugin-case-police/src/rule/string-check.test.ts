@@ -4,16 +4,17 @@ import type { Options } from './string-check'
 import rule, { RULE_NAME } from './string-check'
 
 const valids: ([string, Options] | [string])[] = [
-  ['const a=\'Ant Design\''],
-  ['const a=\'iOc\'', [{ presets: ['softwares'] }]],
+  ['const a="Ant Design"'],
+  ['const a="iOc"', [{ presets: ['softwares'] }]],
 ]
+
 const invalids: ([string, string, Options] | [string, string])[] = [
-  ['const a=\'Typescript\'', 'const a=\'TypeScript\''],
-  ['const a=\'Typescript and Javascript\'', 'const a=\'TypeScript and JavaScript\''],
-  ['const a={name:\'Ant design\'}', 'const a={name:\'Ant Design\'}'],
-  ['const a=\'nintendo Switch and Javascript\'', 'const a=\'Nintendo Swicth and JavaScript\'', [{ dict: { 'nintendo switch': 'Nintendo Swicth' } }]],
-  ['const a=\'nintendo Switch and Javascript\'', 'const a=\'Nintendo Swicth and Javascript\'', [{ dict: { 'nintendo switch': 'Nintendo Swicth' }, noDefault: true }]],
-  ['const a=\'alphaGo\'', 'const a=\'AlphaGo\'', [{ presets: ['brands'] }]],
+  ['const a="Typescript"', 'const a="TypeScript"'],
+  ['const a="Typescript and Javascript"', 'const a="TypeScript and JavaScript"'],
+  ['const a={name:"Ant design"}', 'const a={name:"Ant Design"}'],
+  ['const a="nintendo Switch and Javascript"', 'const a="Nintendo Swicth and JavaScript"', [{ dict: { 'nintendo switch': 'Nintendo Swicth' } }]],
+  ['const a="nintendo Switch and Javascript"', 'const a="Nintendo Swicth and Javascript"', [{ dict: { 'nintendo switch': 'Nintendo Swicth' }, noDefault: true }]],
+  ['const a="alphaGo"', 'const a="AlphaGo"', [{ presets: ['brands'] }]],
 ]
 
 it('runs', () => {
