@@ -15,6 +15,7 @@ const original = fs.readFileSync(path.join(__dirname, '../test/original.txt'), '
 const expect = fs.readFileSync(path.join(__dirname, '../test/expect.txt'), 'utf-8')
 
 const invalids: ([string, string, Options] | [string, string])[] = [
+  ['const a="Typescript \\n Ant design"', 'const a="TypeScript \\n Ant Design"'],
   ['const a="Typescript"', 'const a="TypeScript"'],
   ['const a="Typescript and Javascript"', 'const a="TypeScript and JavaScript"'],
   ['const a={name:"Ant design"}', 'const a={name:"Ant Design"}'],

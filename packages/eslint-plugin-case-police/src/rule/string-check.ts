@@ -89,7 +89,10 @@ export default createEslintRule<Options, MessageIds>({
               messageId: 'spellError',
               node,
               fix(fixer) {
-                return fixer.replaceTextRange([node.range[0] + 1, node.range[1] - 1], replaced)
+                return fixer.replaceTextRange(
+                  [node.range[0] + 1, node.range[1] - 1],
+                  replaced.replaceAll('\n', '\\n'),
+                )
               },
             })
           }
