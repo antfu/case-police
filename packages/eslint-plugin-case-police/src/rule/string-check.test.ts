@@ -1,4 +1,6 @@
 /* eslint-disable case-police/string-check */
+import fs from 'node:fs'
+import path from 'node:path'
 import { RuleTester } from '@typescript-eslint/utils/dist/ts-eslint'
 import { it } from 'vitest'
 import type { Options } from './string-check'
@@ -8,6 +10,9 @@ const valids: ([string, Options] | [string])[] = [
   ['const a="Ant Design"'],
   ['const a="iOc"', [{ presets: ['softwares'] }]],
 ]
+
+const original = fs.readFileSync(path.join(__dirname, '../test/original.txt'), 'utf-8')
+const expect = fs.readFileSync(path.join(__dirname, '../test/expect.txt'), 'utf-8')
 
 const invalids: ([string, string, Options] | [string, string])[] = [
   ['const a="Typescript"', 'const a="TypeScript"'],
@@ -23,14 +28,14 @@ it('runs', () => {
     parser: require.resolve('@typescript-eslint/parser'),
   })
 
-  ruleTester.run(RULE_NAME, rule, {
-    valid: valids.map(i => i[1]
-      ? ({
-          code: i[0],
-          options: i?.[1],
-        })
-      : ({ code: i[0] })),
-    invalid: invalids.map(i => i[2]
+  const invalidArr = [
+    {
+      code: original,
+      output: expect,
+      errors: new Array(5).fill({ messageId: 'spellError' }),
+    },
+  ].concat(
+    invalids.map(i => i[2]
       ? ({
           code: i[0],
           output: i[1],
@@ -42,5 +47,15 @@ it('runs', () => {
           output: i[1],
           errors: [{ messageId: 'spellError' }],
         })),
+  )
+
+  ruleTester.run(RULE_NAME, rule, {
+    valid: valids.map(i => i[1]
+      ? ({
+          code: i[0],
+          options: i?.[1],
+        })
+      : ({ code: i[0] })),
+    invalid: invalidArr,
   })
 })

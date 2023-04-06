@@ -11,8 +11,7 @@
   ],
   "scripts": {
     "postinstall": "esno script/generateDict",
-    "build": "rimraf dist && unbuild",
-    "test": "vitest"
+    "build": "rimraf dist && unbuild"
   },
   "dependencies": {
     "@typescript-eslint/utils": "^5.57.1"

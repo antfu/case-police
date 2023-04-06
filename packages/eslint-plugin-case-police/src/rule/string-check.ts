@@ -78,7 +78,7 @@ export default createEslintRule<Options, MessageIds>({
   ],
   create: (context, [options]) => {
     const dict = mergeDict(options)
-
+    const code = context.getSourceCode().text
     return {
       Literal: (node) => {
         if (typeof node.value === 'string') {
@@ -95,19 +95,20 @@ export default createEslintRule<Options, MessageIds>({
           }
         }
       },
-      // TemplateElement: (node) => {
-      //   const replaced = replaceCore(node.value.raw, dict, [])
+      TemplateElement: (node) => {
+        const originalStr = code.slice(node.range[0], node.range[1])
+        const replaced = replaceCore(originalStr, dict, [])
 
-      //   if (replaced) {
-      //     context.report({
-      //       messageId: 'spellError',
-      //       node,
-      //       fix(fixer) {
-      //         return fixer.replaceTextRange([node.range[0] + 1, node.range[1] - 1], replaced)
-      //       },
-      //     })
-      //   }
-      // },
+        if (replaced) {
+          context.report({
+            messageId: 'spellError',
+            node,
+            fix(fixer) {
+              return fixer.replaceText(node, replaced)
+            },
+          })
+        }
+      },
     }
   },
 })
