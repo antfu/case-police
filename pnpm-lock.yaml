@@ -11,6 +11,7 @@ importers:
       '@types/node': ^18.14.6
       bumpp: ^9.0.0
       eslint: ^8.35.0
+      eslint-plugin-case-police: link:./packages/eslint-plugin-case-police
       esno: ^0.16.3
       fast-glob: ^3.2.12
       is-binary-path: ^2.1.0
@@ -33,6 +34,7 @@ importers:
       '@types/node': 18.15.11
       bumpp: 9.1.0
       eslint: 8.37.0
+      eslint-plugin-case-police: link:packages/eslint-plugin-case-police
       esno: 0.16.3
       fast-glob: 3.2.12
       is-binary-path: 2.1.0

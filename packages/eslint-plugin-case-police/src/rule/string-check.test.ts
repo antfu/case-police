@@ -1,3 +1,4 @@
+/* eslint-disable case-police/string-check */
 import { RuleTester } from '@typescript-eslint/utils/dist/ts-eslint'
 import { it } from 'vitest'
 import type { Options } from './string-check'
@@ -9,20 +10,6 @@ const valids: ([string, Options] | [string])[] = [
 ]
 
 const invalids: ([string, string, Options] | [string, string])[] = [
-  [`\`Typescript
-
-  
-  \``, `\`TypeScript
-
-  
-  \``],
-  [`\`Typescript
-
-  ${111}
-  \``, `\`TypeScript
-
-  ${111}
-  \``],
   ['const a="Typescript"', 'const a="TypeScript"'],
   ['const a="Typescript and Javascript"', 'const a="TypeScript and JavaScript"'],
   ['const a={name:"Ant design"}', 'const a={name:"Ant Design"}'],

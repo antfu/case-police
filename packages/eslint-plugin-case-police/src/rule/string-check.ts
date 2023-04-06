@@ -89,25 +89,25 @@ export default createEslintRule<Options, MessageIds>({
               messageId: 'spellError',
               node,
               fix(fixer) {
-                return fixer.replaceTextRange([node.range[0]+1, node.range[1]-1], replaced)
+                return fixer.replaceTextRange([node.range[0] + 1, node.range[1] - 1], replaced)
               },
             })
           }
         }
       },
-      TemplateElement: (node) => {
-        const replaced = replaceCore(node.value.raw, dict, [])
+      // TemplateElement: (node) => {
+      //   const replaced = replaceCore(node.value.raw, dict, [])
 
-        if (replaced) {
-          context.report({
-            messageId: 'spellError',
-            node,
-            fix(fixer) {
-              return fixer.replaceTextRange([node.range[0]+1, node.range[1]-1], replaced)
-            },
-          })
-        }
-      },
+      //   if (replaced) {
+      //     context.report({
+      //       messageId: 'spellError',
+      //       node,
+      //       fix(fixer) {
+      //         return fixer.replaceTextRange([node.range[0] + 1, node.range[1] - 1], replaced)
+      //       },
+      //     })
+      //   }
+      // },
     }
   },
 })
