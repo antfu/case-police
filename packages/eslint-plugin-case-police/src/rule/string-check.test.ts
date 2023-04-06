@@ -11,10 +11,17 @@ const valids: ([string, Options] | [string])[] = [
 const invalids: ([string, string, Options] | [string, string])[] = [
   [`\`Typescript
 
-  asdasda
+  
   \``, `\`TypeScript
 
-  asdasda
+  
+  \``],
+  [`\`Typescript
+
+  ${111}
+  \``, `\`TypeScript
+
+  ${111}
   \``],
   ['const a="Typescript"', 'const a="TypeScript"'],
   ['const a="Typescript and Javascript"', 'const a="TypeScript and JavaScript"'],

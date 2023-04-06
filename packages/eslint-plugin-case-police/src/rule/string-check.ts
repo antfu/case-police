@@ -89,7 +89,7 @@ export default createEslintRule<Options, MessageIds>({
               messageId: 'spellError',
               node,
               fix(fixer) {
-                return fixer.replaceText(node, `"${replaced}"`)
+                return fixer.replaceTextRange([node.range[0]+1, node.range[1]-1], replaced)
               },
             })
           }
@@ -103,7 +103,7 @@ export default createEslintRule<Options, MessageIds>({
             messageId: 'spellError',
             node,
             fix(fixer) {
-              return fixer.replaceText(node, `\`${replaced}\``)
+              return fixer.replaceTextRange([node.range[0]+1, node.range[1]-1], replaced)
             },
           })
         }
