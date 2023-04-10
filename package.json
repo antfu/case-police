@@ -43,19 +43,21 @@
     "release": "bumpp && pnpm publish",
     "start": "esno src/index.ts",
     "test": "vitest",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "postinstall": "esno script/generateDict"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.36.0",
     "@antfu/ni": "^0.20.0",
     "@babel/types": "^7.21.2",
+    "@types/fs-extra": "^11.0.1",
     "@types/minimist": "^1.2.2",
     "@types/node": "^18.14.6",
     "bumpp": "^9.0.0",
     "eslint": "^8.35.0",
-    "eslint-plugin-case-police": "link:./packages/eslint-plugin-case-police",
     "esno": "^0.16.3",
     "fast-glob": "^3.2.12",
+    "fs-extra": "^11.1.0",
     "is-binary-path": "^2.1.0",
     "is-text-path": "^2.0.0",
     "minimist": "^1.2.8",

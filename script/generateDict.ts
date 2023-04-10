@@ -1,6 +1,6 @@
-import fs from 'node:fs/promises'
 import path from 'node:path'
-import { DICT_FOLDER, resolvePreset } from '../../../src/utils'
+import fs from 'fs-extra'
+import { DICT_FOLDER, resolvePreset } from '../src/utils'
 
 async function run() {
   const files = await fs.readdir(DICT_FOLDER)
@@ -13,7 +13,7 @@ async function run() {
     })),
   )
 
-  await fs.writeFile('./dict-temp.json', JSON.stringify(dictMap), 'utf-8')
+  fs.outputJsonSync('./temp/dict-temp.json', dictMap)
 }
 
 run()

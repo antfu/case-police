@@ -1,5 +1,5 @@
 import { createEslintRule } from '../utils'
-import orginDict from '../../dict-temp.json'
+import orginDict from '../../../../temp/dict-temp.json'
 import { replaceCore } from './../../../../src/utils'
 
 export const RULE_NAME = 'string-check'

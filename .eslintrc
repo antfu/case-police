@@ -1,9 +1,5 @@
 {
   "extends": "@antfu",
-  "plugins": ["case-police"],
-  "rules": {
-    "case-police/string-check":"error"
-  },
   "overrides": [
     {
       "files": "dict/*.json",

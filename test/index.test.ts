@@ -1,4 +1,3 @@
-/* eslint-disable case-police/string-check */
 import path from 'node:path'
 import { existsSync, promises as fs } from 'node:fs'
 import { describe, expect, it } from 'vitest'

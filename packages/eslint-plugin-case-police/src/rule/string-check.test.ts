@@ -1,4 +1,3 @@
-/* eslint-disable case-police/string-check */
 import fs from 'node:fs'
 import path from 'node:path'
 import { RuleTester } from '@typescript-eslint/utils/dist/ts-eslint'
