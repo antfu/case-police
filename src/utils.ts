@@ -66,11 +66,11 @@ export async function replace(
   const dict = _dict || await loadAllPresets()
   const ignore = _ignore.slice()
 
-  const output = (code: string, index: number, key: string, value: string) => {
-    const lines = code.slice(0, index).split('\n')
+  const output = (code: string, offset: number, original: string, replaced: string) => {
+    const lines = code.slice(0, offset).split('\n')
     const line = lines.length
     const col = (lines[line - 1].length || 0) + 1
-    console.log(`${c.yellow(key)} ${c.dim('→')} ${c.green(value)} \t ${c.dim(`./${id}:${line}:${col}`)}`)
+    console.log(`${c.yellow(original)} ${c.dim('→')} ${c.green(replaced)} \t ${c.dim(`./${id}:${line}:${col}`)}`)
   }
 
   return replaceCore(

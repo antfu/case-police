@@ -1,40 +1,12 @@
+import type { Option } from '../../../utils/mergeDict'
+import { mergeDict } from '../../../utils/mergeDict'
 import { createEslintRule } from '../utils'
-import orginDict from '../../../../temp/dict-temp.json'
 import { replaceCore } from './../../../../src/utils'
 
 export const RULE_NAME = 'string-check'
 export type MessageIds = 'spellError'
-export type Presets = 'softwares' | 'products' | 'general' | 'brands' | 'abbreviates'
-export type Options = [
-  {
-    dict?: Record<string, string>
-    noDefault?: boolean
-    presets?: Presets[]
-  },
-]
 
-function mergeDict(options: Options[0]) {
-  const dictionary = {}
-
-  if (options.presets?.length) {
-    Object.assign(
-      dictionary,
-      ...options.presets.map(preset => (orginDict?.[preset]) ?? {}),
-    )
-  }
-  else {
-    Object.assign(
-      dictionary,
-      ...Object.values(orginDict),
-    )
-  }
-  const dict = options.noDefault ? {} : dictionary
-
-  return {
-    ...dict,
-    ...options.dict,
-  }
-}
+export type Options = [Option]
 
 export default createEslintRule<Options, MessageIds>({
   name: RULE_NAME,
