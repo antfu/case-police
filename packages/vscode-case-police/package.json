@@ -34,10 +34,13 @@
       "type": "object",
       "title": "CasePolice",
       "properties": {
-        "casePolice.dict": {
-          "type": "object",
-          "default": {},
-          "description": "Custom dictionary, will be merged with original dict"
+        "casePolice.presets": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [],
+          "description": "Filter the default presets"
         },
         "casePolice.noDefault": {
           "type": "boolean",

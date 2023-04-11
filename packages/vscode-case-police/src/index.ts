@@ -4,12 +4,12 @@ import isTextPath from 'is-text-path'
 import { replaceCore } from '../../../src/utils'
 import { mergeDict } from '../../utils/mergeDict'
 
-// TODO: presets AND ignore
+// TODO: dict AND ignore
 export function activate() {
   const dict = mergeDict({
     noDefault: workspace.getConfiguration().get('casePolice.noDefault') ?? false,
-    dict: workspace.getConfiguration().get('casePolice.dict') ?? {},
-    presets: [],
+    dict: {},
+    presets: workspace.getConfiguration().get('casePolice.presets') ?? [],
   })
 
   const decorationType = window.createTextEditorDecorationType({
