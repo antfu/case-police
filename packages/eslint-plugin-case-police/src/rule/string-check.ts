@@ -54,15 +54,16 @@ export default createEslintRule<Options, MessageIds>({
     const dict = mergeDict(options)
     const code = context.getSourceCode().text
 
-    const checkText = (node: TSESTree.JSXText) => {
-      const replaced = replaceCore(node.value, dict, [])
+    const checkText = (node: TSESTree.JSXText | TSESTree.TemplateElement) => {
+      const originalStr = code.slice(node.range[0], node.range[1])
+      const replaced = replaceCore(originalStr, dict, [])
 
       if (replaced) {
         context.report({
           messageId: 'spellError',
           node,
           fix(fixer) {
-            return fixer.replaceTextRange([node.range[0] + 1, node.range[1] - 1], replaced)
+            return fixer.replaceText(node, replaced)
           },
         })
       }
@@ -91,18 +92,7 @@ export default createEslintRule<Options, MessageIds>({
         checkText(node)
       },
       TemplateElement: (node) => {
-        const originalStr = code.slice(node.range[0], node.range[1])
-        const replaced = replaceCore(originalStr, dict, [])
-
-        if (replaced) {
-          context.report({
-            messageId: 'spellError',
-            node,
-            fix(fixer) {
-              return fixer.replaceText(node, replaced)
-            },
-          })
-        }
+        checkText(node)
       },
     }
 
