@@ -1,3 +1,5 @@
+import type { RuleListener } from '@typescript-eslint/utils/dist/ts-eslint'
+import type { TSESTree } from '@typescript-eslint/utils'
 import type { Option } from '../../../utils/mergeDict'
 import { mergeDict } from '../../../utils/mergeDict'
 import { createEslintRule } from '../utils'
@@ -51,7 +53,22 @@ export default createEslintRule<Options, MessageIds>({
   create: (context, [options]) => {
     const dict = mergeDict(options)
     const code = context.getSourceCode().text
-    return {
+
+    const checkText = (node: TSESTree.JSXText) => {
+      const replaced = replaceCore(node.value, dict, [])
+
+      if (replaced) {
+        context.report({
+          messageId: 'spellError',
+          node,
+          fix(fixer) {
+            return fixer.replaceTextRange([node.range[0] + 1, node.range[1] - 1], replaced)
+          },
+        })
+      }
+    }
+
+    const scriptVisitor: RuleListener = {
       Literal: (node) => {
         if (typeof node.value === 'string') {
           const replaced = replaceCore(node.value, dict, [])
@@ -70,6 +87,9 @@ export default createEslintRule<Options, MessageIds>({
           }
         }
       },
+      JSXText: (node) => {
+        checkText(node)
+      },
       TemplateElement: (node) => {
         const originalStr = code.slice(node.range[0], node.range[1])
         const replaced = replaceCore(originalStr, dict, [])
@@ -85,5 +105,19 @@ export default createEslintRule<Options, MessageIds>({
         }
       },
     }
+
+    const templateBodyVisitor: RuleListener = {
+      VText(node: any) {
+        checkText(node)
+      },
+    }
+
+    // @ts-expect-error missing-types
+    if (context.parserServices == null || context.parserServices?.defineTemplateBodyVisitor == null)
+      return scriptVisitor
+    else
+      // @ts-expect-error missing-types
+      return context.parserServices?.defineTemplateBodyVisitor(templateBodyVisitor, scriptVisitor)
   },
+
 })

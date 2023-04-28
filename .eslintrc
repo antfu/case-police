@@ -7,6 +7,5 @@
         "jsonc/sort-keys": "error"
       }
     }
-  ],
-  "ignorePatterns":["dict-temp.json"]
+  ]
 }
