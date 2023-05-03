@@ -1,4 +1,4 @@
-const a = 'JavaScript'
+const a = 'JavaSCript'
 const b = `
-JavaScript
+Javascript
 ${a}`

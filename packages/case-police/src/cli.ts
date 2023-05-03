@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { existsSync, promises as fs } from 'node:fs'
 import fg from 'fast-glob'
 import c from 'picocolors'

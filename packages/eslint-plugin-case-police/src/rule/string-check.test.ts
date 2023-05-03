@@ -13,14 +13,14 @@ const valids: ([string, [RuleOption]] | [string])[] = [
 const original = fs.readFileSync(path.join(__dirname, '../test/original.txt'), 'utf-8')
 const expect = fs.readFileSync(path.join(__dirname, '../test/expect.txt'), 'utf-8')
 
-const invalids: ([string, string, [RuleOption]] | [string, string])[] = [
-  ['const a="Typescript \\n Ant design"', 'const a="TypeScript \\n Ant Design"'],
-  ['const a="Typescript"', 'const a="TypeScript"'],
-  ['const a="Typescript and Javascript"', 'const a="TypeScript and JavaScript"'],
-  ['const a={name:"Ant design"}', 'const a={name:"Ant Design"}'],
-  ['const a="nintendo Switch and Javascript"', 'const a="Nintendo Swicth and JavaScript"', [{ dict: { 'nintendo switch': 'Nintendo Swicth' } }]],
-  ['const a="nintendo Switch and Javascript"', 'const a="Nintendo Swicth and Javascript"', [{ dict: { 'nintendo switch': 'Nintendo Swicth' }, noDefault: true }]],
-  ['const a="alphaGo"', 'const a="AlphaGo"', [{ presets: ['brands'] }]],
+const invalids: ([string, string, number, [RuleOption]] | [string, string, number])[] = [
+  ['const a="Typescript \\n Ant design"', 'const a="TypeScript \\n Ant Design"', 2],
+  ['const a="Typescript"', 'const a="TypeScript"', 1],
+  ['const a="Typescript and Javascript"', 'const a="TypeScript and JavaScript"', 2],
+  ['const a={name:"Ant design"}', 'const a={name:"Ant Design"}', 1],
+  ['const a="nintendo Switch and Javascript"', 'const a="Nintendo Swicth and JavaScript"', 2, [{ dict: { 'nintendo switch': 'Nintendo Swicth' } }]],
+  ['const a="nintendo Switch and Javascript"', 'const a="Nintendo Swicth and Javascript"', 1, [{ dict: { 'nintendo switch': 'Nintendo Swicth' }, noDefault: true }]],
+  ['const a="alphaGo"', 'const a="AlphaGo"', 1, [{ presets: ['brands'] }]],
 ]
 
 it('runs', () => {
@@ -35,17 +35,17 @@ it('runs', () => {
       errors: new Array(5).fill({ messageId: 'CasePoliceError' }),
     },
   ].concat(
-    invalids.map(i => i[2]
+    invalids.map(i => i[3]
       ? ({
           code: i[0],
           output: i[1],
-          options: i?.[2],
-          errors: [{ messageId: 'CasePoliceError' }],
+          options: i[3],
+          errors: Array.from({ length: i[2] }, _ => ({ messageId: 'CasePoliceError' })),
         })
       : ({
           code: i[0],
           output: i[1],
-          errors: [{ messageId: 'CasePoliceError' }],
+          errors: Array.from({ length: i[2] }, _ => ({ messageId: 'CasePoliceError' })),
         })),
   )
 

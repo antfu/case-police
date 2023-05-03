@@ -1,7 +1,7 @@
 {
-  "private": true,
   "type": "module",
   "version": "0.5.14",
+  "private": true,
   "packageManager": "pnpm@7.29.1",
   "scripts": {
     "build": "pnpm -r run build",
@@ -18,10 +18,10 @@
     "@babel/types": "^7.21.2",
     "@types/fs-extra": "^11.0.1",
     "@types/minimist": "^1.2.2",
-    "eslint-plugin-case-police": "workspace:*",
     "@types/node": "^18.14.6",
     "bumpp": "^9.0.0",
     "eslint": "^8.35.0",
+    "eslint-plugin-case-police": "workspace:*",
     "esno": "^0.16.3",
     "fast-glob": "^3.2.12",
     "fs-extra": "^11.1.0",

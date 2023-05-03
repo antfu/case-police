@@ -1,9 +1,10 @@
 <script setup lang="ts">
 const a = 'javaScript'
+let javaScript = 'foo'
 </script>
 
 <template>
   <div>
-    {{ a }} javaScript
+    {{ a }} javaScript webPack {{ javaScript }}
   </div>
 </template>

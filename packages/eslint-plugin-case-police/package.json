@@ -17,8 +17,8 @@
   },
   "dependencies": {
     "@typescript-eslint/utils": "^5.57.1",
-    "synckit": "^0.8.5",
-    "case-police": "workspace:*"
+    "case-police": "workspace:*",
+    "synckit": "^0.8.5"
   },
   "devDependencies": {
     "@typescript-eslint/parser": "^5.57.1",

@@ -25,7 +25,7 @@ export const replaceCore = (
   code: string,
   dict: Record<string, string>,
   ignore: string[] = [],
-  output?: (code: string, index: number, key: string, value: string) => void,
+  output?: (code: string, index: number, from: string, to: string) => void,
   regex?: RegExp,
 ) => {
   regex = regex || buildRegex(dict)
@@ -35,21 +35,21 @@ export const replaceCore = (
   })
 
   let changed = false
-  code = code.replace(regex, (_, key: string, index: number) => {
-    if (containsUTF8(code, key, index))
+  code = code.replace(regex, (_, from: string, index: number) => {
+    if (containsUTF8(code, from, index))
       return _
 
-    if (!key.match(/[A-Z]/) || !key.match(/[a-z]/))
+    if (!from.match(/[A-Z]/) || !from.match(/[a-z]/))
       return _
-    const lower = key.toLowerCase()
+    const lower = from.toLowerCase()
     if (ignore.includes(lower))
       return _
-    const value = dict[lower]
-    if (!value || value === key)
+    const to = dict[lower]
+    if (!to || to === from)
       return _
     changed = true
-    output?.(code, index, key, value)
-    return value
+    output?.(code, index, from, to)
+    return to
   })
   if (changed)
     return code

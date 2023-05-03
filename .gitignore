@@ -9,4 +9,3 @@ lib-cov
 logs
 node_modules
 temp
-dict-temp.json

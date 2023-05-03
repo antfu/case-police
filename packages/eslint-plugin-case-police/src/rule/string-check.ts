@@ -38,11 +38,15 @@ export default createEslintRule<[RuleOption], MessageIds>({
             description: 'Filter the default presets.',
             type: 'array',
           },
+          ignore: {
+            description: 'Ignore some words.',
+            type: 'array',
+          },
         },
       },
     ],
     messages: {
-      CasePoliceError: 'make the case correct in string',
+      CasePoliceError: '\'{{ from }}\' should be \'{{ to }}\'.',
     },
   },
   defaultOptions: [
@@ -50,22 +54,51 @@ export default createEslintRule<[RuleOption], MessageIds>({
       noDefault: false,
       dict: {},
       presets: [],
+      ignore: [],
     },
   ],
   create: (context, [options]) => {
     const dict = loadDict(options)
     const code = context.getSourceCode().text
 
-    const checkText = (node: TSESTree.JSXText | TSESTree.TemplateElement) => {
-      const originalStr = code.slice(node.range[0], node.range[1])
-      const replaced = replaceCore(originalStr, dict, [])
+    const checkText = (node: TSESTree.Node) => {
+      const start = node.range[0]
+      const end = node.range[1]
+      const originalStr = code.slice(start, end)
+      const outputs: { from: string; to: string; index: number }[] = []
 
-      if (replaced) {
+      replaceCore(originalStr, dict, options.ignore, (_, index, from, to) => {
+        outputs.push({ index, from, to })
+      })
+
+      for (const { from, to, index } of outputs) {
+        const loc = {
+          ...node.loc.start,
+        }
+
+        for (let i = 0; i < index; i++) {
+          if (originalStr[i] === '\n') {
+            loc.line++
+            loc.column = 0
+          }
+          else {
+            loc.column++
+          }
+        }
+
         context.report({
           messageId: 'CasePoliceError',
+          data: { from, to },
           node,
-          fix(fixer) {
-            return fixer.replaceText(node, replaced)
+          *fix(fixer) {
+            yield fixer.replaceTextRange([start + index, start + index + from.length], to)
+          },
+          loc: {
+            start: loc,
+            end: {
+              line: loc.line,
+              column: loc.column + from.length,
+            },
           },
         })
       }
@@ -73,22 +106,8 @@ export default createEslintRule<[RuleOption], MessageIds>({
 
     const scriptVisitor: RuleListener = {
       Literal: (node) => {
-        if (typeof node.value === 'string') {
-          const replaced = replaceCore(node.value, dict, [])
-
-          if (replaced) {
-            context.report({
-              messageId: 'CasePoliceError',
-              node,
-              fix(fixer) {
-                return fixer.replaceTextRange(
-                  [node.range[0] + 1, node.range[1] - 1],
-                  replaced.replaceAll('\n', '\\n'),
-                )
-              },
-            })
-          }
-        }
+        if (typeof node.value === 'string')
+          checkText(node)
       },
       JSXText: (node) => {
         checkText(node)
