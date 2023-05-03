@@ -10,6 +10,7 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
+    "jsx": "preserve",
     "paths": {
       "case-police": [
         "./packages/case-police/src/index.ts"
@@ -19,6 +20,6 @@
   "exclude": [
     "**/dist/**",
     "**/node_modules/**",
-    "**/fixtures/**"
+    "**/fixture/**"
   ]
 }
