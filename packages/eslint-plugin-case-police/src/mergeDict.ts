@@ -1,4 +1,4 @@
-import orginDict from '../../temp/dict-temp.json'
+import orginDict from '../../../temp/dict-temp.json'
 export type Presets = 'softwares' | 'products' | 'general' | 'brands' | 'abbreviates'
 
 export interface Option {

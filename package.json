@@ -44,7 +44,8 @@
     "start": "esno src/index.ts",
     "test": "vitest",
     "typecheck": "tsc --noEmit",
-    "postinstall": "esno script/generateDict"
+    "postinstall": "esno script/generateDict",
+    "play:eslint-plugin": "npm -C packages/eslint-plugin-case-police run lint"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.36.0",

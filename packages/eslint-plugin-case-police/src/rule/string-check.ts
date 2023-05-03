@@ -1,7 +1,7 @@
 import type { RuleListener } from '@typescript-eslint/utils/dist/ts-eslint'
 import type { TSESTree } from '@typescript-eslint/utils'
-import type { Option } from '../../../utils/mergeDict'
-import { mergeDict } from '../../../utils/mergeDict'
+import type { Option } from '../mergeDict'
+import { mergeDict } from '../mergeDict'
 import { createEslintRule } from '../utils'
 import { replaceCore } from './../../../../src/utils'
 
