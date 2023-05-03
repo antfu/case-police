@@ -1,0 +1,22 @@
+const test1 = "JavaSCript"
+const test2 = `
+TypeSCript ${test1}
+
+
+`
+const test3 = `
+${test1}TypeSCript 
+
+
+`
+const test4 = `
+${test1}TypeSCript 
+
+${test1}
+`
+const test5 = `TypeScriPt
+nintendo
+`
+const test6 = `TypeScript
+nintendo
+`

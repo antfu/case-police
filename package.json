@@ -1,47 +1,14 @@
 {
-  "name": "case-police",
   "type": "module",
   "version": "0.5.14",
+  "private": true,
   "packageManager": "pnpm@7.29.1",
-  "description": "Make the case correct, PLEASE!",
-  "author": "Anthony Fu <anthonyfu117@hotmail.com>",
-  "license": "MIT",
-  "funding": "https://github.com/sponsors/antfu",
-  "homepage": "https://github.com/antfu/case-police#readme",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/antfu/case-police.git"
-  },
-  "bugs": {
-    "url": "https://github.com/antfu/case-police/issues"
-  },
-  "keywords": [],
-  "sideEffects": false,
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs"
-    },
-    "./*": "./*"
-  },
-  "main": "./dist/index.mjs",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
-  "bin": {
-    "case-police": "./bin/case-police.mjs"
-  },
-  "files": [
-    "dist",
-    "bin",
-    "dict"
-  ],
   "scripts": {
-    "build": "rimraf dist && unbuild",
-    "dev": "unbuild --stub",
+    "build": "pnpm -r run build",
+    "dev": "pnpm -r run dev",
     "lint": "eslint .",
-    "prepublishOnly": "nr build",
-    "release": "bumpp && pnpm publish",
-    "start": "esno src/index.ts",
+    "release": "bumpp -r && pnpm -r publish",
+    "start": "cd packages/case-police && esno src/index.ts",
     "test": "vitest",
     "typecheck": "tsc --noEmit"
   },
@@ -49,12 +16,15 @@
     "@antfu/eslint-config": "^0.36.0",
     "@antfu/ni": "^0.20.0",
     "@babel/types": "^7.21.2",
+    "@types/fs-extra": "^11.0.1",
     "@types/minimist": "^1.2.2",
     "@types/node": "^18.14.6",
     "bumpp": "^9.0.0",
     "eslint": "^8.35.0",
+    "eslint-plugin-case-police": "workspace:*",
     "esno": "^0.16.3",
     "fast-glob": "^3.2.12",
+    "fs-extra": "^11.1.0",
     "is-binary-path": "^2.1.0",
     "is-text-path": "^2.0.0",
     "minimist": "^1.2.8",

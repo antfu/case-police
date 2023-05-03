@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { existsSync, promises as fs } from 'node:fs'
 import fg from 'fast-glob'
 import c from 'picocolors'
@@ -7,7 +6,7 @@ import isText from 'is-text-path'
 import pLimit from 'p-limit'
 import minimist from 'minimist'
 import { version } from '../package.json'
-import { buildRegex, loadAllPresets, replace, resolvePreset } from './utils'
+import { buildRegex, loadDictPresets, replace } from './utils'
 
 async function run() {
   const argv = minimist(process.argv.slice(2), {
@@ -37,28 +36,13 @@ async function run() {
     ignore.push(...argv.ignore.split(',').map((i: string) => i.trim()))
   ignore = ignore.filter(Boolean)
 
-  let dictionary = {}
+  let dict = {}
 
   // presets
-  const presets: string[] = (argv.presets || '')
-    .split(',')
-    .map((i: string) => i.trim())
-    .filter(Boolean)
-  if (argv['no-default']) {
-    // nothing
-  }
-  else if (presets.length) {
-    Object.assign(
-      dictionary,
-      ...await Promise.all(presets.map(resolvePreset)),
-    )
-  }
-  else {
-    dictionary = await loadAllPresets()
-  }
+  if (!argv['no-default'])
+    dict = await loadDictPresets(argv.preset)
 
   // dict
-  let dict = argv['no-default'] ? {} : dictionary
   if (argv.dict) {
     const str = await fs.readFile(argv.dict, 'utf8')
     const userDict = JSON.parse(str)
@@ -84,7 +68,7 @@ async function run() {
   console.log()
   console.log(c.inverse(c.red(' Case ')) + c.inverse(c.blue(' Police ')) + c.dim(` v${version}`))
   console.log()
-  console.log(c.blue(files.length) + c.dim(' files found for checking, ') + c.cyan(Object.keys(dictionary).length) + c.dim(' words loaded\n'))
+  console.log(c.blue(files.length) + c.dim(' files found for checking, ') + c.cyan(Object.keys(dict).length) + c.dim(' words loaded\n'))
   const wrote: string[] = []
   await Promise.all(files.map(file => limit(async () => {
     const code = await fs.readFile(file, 'utf-8')

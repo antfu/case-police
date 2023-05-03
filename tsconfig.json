@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es2017",
+    "target": "es2019",
     "module": "esnext",
     "lib": ["esnext"],
     "moduleResolution": "node",
@@ -9,6 +9,16 @@
     "strictNullChecks": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
-    "skipDefaultLibCheck": true
-  }
+    "skipDefaultLibCheck": true,
+    "paths": {
+      "case-police": [
+        "./packages/case-police/src/index.ts"
+      ]
+    }
+  },
+  "exclude": [
+    "**/dist/**",
+    "**/node_modules/**",
+    "**/fixtures/**"
+  ]
 }
