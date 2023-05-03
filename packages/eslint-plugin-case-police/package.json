@@ -16,12 +16,12 @@
     "lint": "nr build && cd ./fixture && eslint ./src"
   },
   "dependencies": {
-    "@typescript-eslint/utils": "^5.57.1",
+    "@typescript-eslint/utils": "^5.59.2",
     "case-police": "workspace:*",
     "synckit": "^0.8.5"
   },
   "devDependencies": {
-    "@typescript-eslint/parser": "^5.57.1",
+    "@typescript-eslint/parser": "^5.59.2",
     "eslint-plugin-case-police": "workspace:*"
   }
 }

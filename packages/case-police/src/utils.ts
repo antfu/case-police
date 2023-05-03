@@ -21,13 +21,13 @@ export function buildRegex(dictionary: Record<string, string>): RegExp {
   return regex
 }
 
-export const replaceCore = (
+export function replaceCore(
   code: string,
   dict: Record<string, string>,
   ignore: string[] = [],
   output?: (code: string, index: number, from: string, to: string) => void,
   regex?: RegExp,
-) => {
+) {
   regex = regex || buildRegex(dict)
   Array.from(code.matchAll(IGNORE_REGEX)).forEach((match) => {
     const [, key] = match

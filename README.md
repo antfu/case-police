@@ -32,6 +32,8 @@ We also provide an ESLint plugin that can be used to lint your codebase.
 npm i -D eslint-plugin-case-police
 ```
 
+<!-- eslint-skip -->
+
 ```jsonc
 // .eslintrc
 {
