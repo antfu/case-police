@@ -10,11 +10,15 @@
     "dist"
   ],
   "scripts": {
+    "dev": "unbuild --stub",
+    "prepublishOnly": "nr build",
     "build": "rimraf dist && unbuild",
-    "lint": "nr build && cd ./fixtures && eslint ./src"
+    "lint": "nr build && cd ./fixture && eslint ./src"
   },
   "dependencies": {
-    "@typescript-eslint/utils": "^5.57.1"
+    "@typescript-eslint/utils": "^5.57.1",
+    "synckit": "^0.8.5",
+    "case-police": "workspace:*"
   },
   "devDependencies": {
     "@typescript-eslint/parser": "^5.57.1",

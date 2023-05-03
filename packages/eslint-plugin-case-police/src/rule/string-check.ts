@@ -1,16 +1,18 @@
+import { join } from 'node:path'
 import type { RuleListener } from '@typescript-eslint/utils/dist/ts-eslint'
 import type { TSESTree } from '@typescript-eslint/utils'
-import type { Option } from '../mergeDict'
-import { mergeDict } from '../mergeDict'
+import { createSyncFn } from 'synckit'
+import { replaceCore } from 'case-police'
 import { createEslintRule } from '../utils'
-import { replaceCore } from './../../../../src/utils'
+import { distDir } from '../dirs'
+import type { RuleOption } from '../types'
 
 export const RULE_NAME = 'string-check'
-export type MessageIds = 'spellError'
+export type MessageIds = 'CasePoliceError'
 
-export type Options = [Option]
+const loadDict = createSyncFn<(options: RuleOption) => Promise<Record<string, string>>>(join(distDir, 'worker-load.cjs'))
 
-export default createEslintRule<Options, MessageIds>({
+export default createEslintRule<[RuleOption], MessageIds>({
   name: RULE_NAME,
   meta: {
     type: 'suggestion',
@@ -40,7 +42,7 @@ export default createEslintRule<Options, MessageIds>({
       },
     ],
     messages: {
-      spellError: 'make the case correct in string',
+      CasePoliceError: 'make the case correct in string',
     },
   },
   defaultOptions: [
@@ -51,7 +53,7 @@ export default createEslintRule<Options, MessageIds>({
     },
   ],
   create: (context, [options]) => {
-    const dict = mergeDict(options)
+    const dict = loadDict(options)
     const code = context.getSourceCode().text
 
     const checkText = (node: TSESTree.JSXText | TSESTree.TemplateElement) => {
@@ -60,7 +62,7 @@ export default createEslintRule<Options, MessageIds>({
 
       if (replaced) {
         context.report({
-          messageId: 'spellError',
+          messageId: 'CasePoliceError',
           node,
           fix(fixer) {
             return fixer.replaceText(node, replaced)
@@ -76,7 +78,7 @@ export default createEslintRule<Options, MessageIds>({
 
           if (replaced) {
             context.report({
-              messageId: 'spellError',
+              messageId: 'CasePoliceError',
               node,
               fix(fixer) {
                 return fixer.replaceTextRange(

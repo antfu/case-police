@@ -1,0 +1,13 @@
+{
+  "private": true,
+  "scripts": {
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^0.36.0",
+    "@types/react": "^18.2.0",
+    "eslint": "^8.37.0",
+    "eslint-plugin-case-police": "workspace:*",
+    "vue": "^3.2.47"
+  }
+}

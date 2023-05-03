@@ -2,10 +2,10 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { RuleTester } from '@typescript-eslint/utils/dist/ts-eslint'
 import { it } from 'vitest'
-import type { Options } from './string-check'
+import type { RuleOption } from '../types'
 import rule, { RULE_NAME } from './string-check'
 
-const valids: ([string, Options] | [string])[] = [
+const valids: ([string, [RuleOption]] | [string])[] = [
   ['const a="Ant Design"'],
   ['const a="iOc"', [{ presets: ['softwares'] }]],
 ]
@@ -13,7 +13,7 @@ const valids: ([string, Options] | [string])[] = [
 const original = fs.readFileSync(path.join(__dirname, '../test/original.txt'), 'utf-8')
 const expect = fs.readFileSync(path.join(__dirname, '../test/expect.txt'), 'utf-8')
 
-const invalids: ([string, string, Options] | [string, string])[] = [
+const invalids: ([string, string, [RuleOption]] | [string, string])[] = [
   ['const a="Typescript \\n Ant design"', 'const a="TypeScript \\n Ant Design"'],
   ['const a="Typescript"', 'const a="TypeScript"'],
   ['const a="Typescript and Javascript"', 'const a="TypeScript and JavaScript"'],
@@ -32,7 +32,7 @@ it('runs', () => {
     {
       code: original,
       output: expect,
-      errors: new Array(5).fill({ messageId: 'spellError' }),
+      errors: new Array(5).fill({ messageId: 'CasePoliceError' }),
     },
   ].concat(
     invalids.map(i => i[2]
@@ -40,12 +40,12 @@ it('runs', () => {
           code: i[0],
           output: i[1],
           options: i?.[2],
-          errors: [{ messageId: 'spellError' }],
+          errors: [{ messageId: 'CasePoliceError' }],
         })
       : ({
           code: i[0],
           output: i[1],
-          errors: [{ messageId: 'spellError' }],
+          errors: [{ messageId: 'CasePoliceError' }],
         })),
   )
 

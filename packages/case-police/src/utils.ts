@@ -1,10 +1,12 @@
 /* eslint-disable no-console */
 import { existsSync, promises as fs } from 'node:fs'
 import path from 'node:path'
-import { fileURLToPath } from 'node:url'
 import c from 'picocolors'
+import { dictDir } from './dirs'
 
-export const DICT_FOLDER = path.resolve(fileURLToPath(import.meta.url), '../../dict')
+export type Presets = 'softwares' | 'products' | 'general' | 'brands' | 'abbreviates'
+
+export const DICT_FOLDER = dictDir
 
 export const IGNORE_KEY = '@case-police-ignore'
 export const DISABLE_KEY = '@case-police-disable'
@@ -114,4 +116,25 @@ function containsUTF8(code: string, key: string, index: number) {
   const head = code.charAt(index - 1)
   const tail = code.charAt(index + key.length)
   return utf8Regex.test(head) || utf8Regex.test(tail)
+}
+
+export async function loadDictPresets(preset: string) {
+  const presets: string[] = (preset || '')
+    .split(',')
+    .map((i: string) => i.trim())
+    .filter(Boolean)
+
+  let dictionary = {}
+
+  if (presets.length) {
+    Object.assign(
+      dictionary,
+      ...await Promise.all(presets.map(resolvePreset)),
+    )
+  }
+  else {
+    dictionary = await loadAllPresets()
+  }
+
+  return dictionary
 }
