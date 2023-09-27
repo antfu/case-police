@@ -8,6 +8,7 @@
   "devtools": "DevTools",
   "esim": "eSIM",
   "faas": "FaaS",
+  "iac": "IaC",
   "iaas": "IaaS",
   "ioc": "IoC",
   "ipsec": "IPsec",
