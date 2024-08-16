@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-case-police",
-  "version": "0.6.1",
+  "version": "0.7.0",
   "license": "MIT",
   "homepage": "https://github.com/antfu/case-police#readme",
   "main": "./dist/index.cjs",
