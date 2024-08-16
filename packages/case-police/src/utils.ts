@@ -11,7 +11,7 @@ export const DICT_FOLDER = dictDir
 export const IGNORE_KEY = '@case-police-ignore'
 export const DISABLE_KEY = '@case-police-disable'
 
-export const IGNORE_REGEX = /@case-police-ignore\s+([^\s]+)/g
+export const IGNORE_REGEX = /@case-police-ignore\s+(\S+)/g
 
 export const UTF8_RANGE = '[\u0080-\uFFFF]'
 
@@ -112,6 +112,7 @@ export async function loadAllPresets() {
 }
 
 function containsUTF8(code: string, key: string, index: number) {
+  // eslint-disable-next-line regexp/no-obscure-range
   const utf8Regex = new RegExp(`${UTF8_RANGE}`)
   const head = code.charAt(index - 1)
   const tail = code.charAt(index + key.length)

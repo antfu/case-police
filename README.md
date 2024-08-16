@@ -4,10 +4,10 @@
 
 <!-- @case-police-ignore -->
 
-- Git**H**ub, not *Github*
-- Type**S**cript, not *Typescript*
-- **m**acOS, not *MacOS*
-- **VS C**ode, not *Vscode*
+- Git**H**ub, not _Github_
+- Type**S**cript, not _Typescript_
+- **m**acOS, not _MacOS_
+- **VS C**ode, not _Vscode_
 - [...](./packages/case-police/dict)
 
 Make the case correct, PLEASE!
@@ -57,15 +57,15 @@ npx case-police "**/*.md" path/to/file.html
 
 ## CLI Options
 
-| Options | Description |
-| --- | --- |
-| `[...globs]` | Files or glob to be checked, if not provided, all the text files will be check |
-| `--fix` | Rewrite changes to file |
-| `-d, --dict <path>` | Custom dictionary JSON, will be merged with original dict |
-| `-p, --presets <presets>` | Filter the default [presets](./packages/case-police/dict), comma separated |
-| `--no-default` | Disable the default dictionary |
-| `--disable <rules>` | Disable rules, comma separated |
-| `--ignore <globs>` | Files or globs to be ignore, comma separated |
+| Options                   | Description                                                                    |
+| ------------------------- | ------------------------------------------------------------------------------ |
+| `[...globs]`              | Files or glob to be checked, if not provided, all the text files will be check |
+| `--fix`                   | Rewrite changes to file                                                        |
+| `-d, --dict <path>`       | Custom dictionary JSON, will be merged with original dict                      |
+| `-p, --presets <presets>` | Filter the default [presets](./packages/case-police/dict), comma separated     |
+| `--no-default`            | Disable the default dictionary                                                 |
+| `--disable <rules>`       | Disable rules, comma separated                                                 |
+| `--ignore <globs>`        | Files or globs to be ignore, comma separated                                   |
 
 ### Ignores
 

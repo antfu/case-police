@@ -2,7 +2,7 @@
   "name": "case-police",
   "type": "module",
   "version": "0.6.1",
-  "packageManager": "pnpm@8.4.0",
+  "packageManager": "pnpm@9.7.1",
   "description": "Make the case correct, PLEASE!",
   "author": "Anthony Fu <anthonyfu117@hotmail.com>",
   "license": "MIT",
@@ -20,13 +20,13 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "require": "./dist/index.cjs",
-      "import": "./dist/index.mjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./cli": {
       "types": "./dist/cli.d.ts",
-      "require": "./dist/cli.cjs",
-      "import": "./dist/cli.mjs"
+      "import": "./dist/cli.mjs",
+      "require": "./dist/cli.cjs"
     },
     "./*": "./*"
   },
@@ -37,9 +37,9 @@
     "case-police": "./bin/case-police.mjs"
   },
   "files": [
-    "dist",
     "bin",
-    "dict"
+    "dict",
+    "dist"
   ],
   "scripts": {
     "build": "rimraf dist && unbuild",

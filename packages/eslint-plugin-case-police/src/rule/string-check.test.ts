@@ -1,17 +1,14 @@
 import fs from 'node:fs'
 import path from 'node:path'
-import { RuleTester } from '@typescript-eslint/utils/dist/ts-eslint'
-import { it } from 'vitest'
+import { run } from 'eslint-vitest-rule-tester'
+import tsPaser from '@typescript-eslint/parser'
 import type { RuleOption } from '../types'
-import rule, { RULE_NAME } from './string-check'
+import rule from './string-check'
 
 const valids: ([string, [RuleOption]] | [string])[] = [
   ['const a="Ant Design"'],
   ['const a="iOc"', [{ presets: ['softwares'] }]],
 ]
-
-const original = fs.readFileSync(path.join(__dirname, '../test/original.txt'), 'utf-8')
-const expect = fs.readFileSync(path.join(__dirname, '../test/expect.txt'), 'utf-8')
 
 const invalids: ([string, string, number, [RuleOption]] | [string, string, number])[] = [
   ['const a="Typescript \\n Ant design"', 'const a="TypeScript \\n Ant Design"', 2],
@@ -23,19 +20,14 @@ const invalids: ([string, string, number, [RuleOption]] | [string, string, numbe
   ['const a="alphaGo"', 'const a="AlphaGo"', 1, [{ presets: ['brands'] }]],
 ]
 
-it('runs', () => {
-  const ruleTester: RuleTester = new RuleTester({
-    parser: require.resolve('@typescript-eslint/parser'),
-  })
-
-  const invalidArr = [
+run({
+  rule,
+  invalid: [
     {
-      code: original,
-      output: expect,
-      errors: new Array(5).fill({ messageId: 'CasePoliceError' }),
+      code: fs.readFileSync(path.join(__dirname, '../test/original.txt'), 'utf-8'),
+      output: fs.readFileSync(path.join(__dirname, '../test/expect.txt'), 'utf-8'),
     },
-  ].concat(
-    invalids.map(i => i[3]
+    ...invalids.map(i => i[3]
       ? ({
           code: i[0],
           output: i[1],
@@ -47,15 +39,14 @@ it('runs', () => {
           output: i[1],
           errors: Array.from({ length: i[2] }, _ => ({ messageId: 'CasePoliceError' })),
         })),
-  )
-
-  ruleTester.run(RULE_NAME, rule, {
-    valid: valids.map(i => i[1]
-      ? ({
-          code: i[0],
-          options: i?.[1],
-        })
-      : ({ code: i[0] })),
-    invalid: invalidArr,
-  })
+  ],
+  valid: valids.map(i => i[1]
+    ? ({
+        code: i[0],
+        options: i?.[1],
+      })
+    : ({ code: i[0] })),
+  languageOptions: {
+    parser: tsPaser,
+  },
 })

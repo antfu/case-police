@@ -1,3 +1,4 @@
+import type { Buffer } from 'node:buffer'
 
 declare module 'parse-gitignore' {
   interface Section {
@@ -18,7 +19,7 @@ declare module 'parse-gitignore' {
     unique?: boolean
     ignore?: string[]
     unignore?: string[]
-    formatSection? (section?: Section): string
+    formatSection?: (section?: Section) => string
   }
 
   declare function parseGitignore(input: string, options?: ParseOptions): ParsedResult

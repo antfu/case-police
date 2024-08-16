@@ -4,10 +4,10 @@
 
 <!-- @case-police-ignore -->
 
-- Git**H**ub, not *Github*
-- Type**S**cript, not *Typescript*
-- **m**acOS, not *MacOS*
-- **VS C**ode, not *Vscode*
+- Git**H**ub, not _Github_
+- Type**S**cript, not _Typescript_
+- **m**acOS, not _MacOS_
+- **VS C**ode, not _Vscode_
 - ...
 
 Make the case correct, PLEASE!
@@ -15,4 +15,3 @@ Make the case correct, PLEASE!
 ## Documentation
 
 [Read full documentation](https://github.com/antfu/case-police#readme).
-

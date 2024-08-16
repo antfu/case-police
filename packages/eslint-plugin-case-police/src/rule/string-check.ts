@@ -1,5 +1,5 @@
 import { join } from 'node:path'
-import type { RuleListener } from '@typescript-eslint/utils/dist/ts-eslint'
+import type { RuleListener } from '@typescript-eslint/utils/ts-eslint'
 import type { TSESTree } from '@typescript-eslint/utils'
 import { createSyncFn } from 'synckit'
 import { replaceCore } from 'case-police'
@@ -18,7 +18,6 @@ export default createEslintRule<[RuleOption], MessageIds>({
     type: 'suggestion',
     docs: {
       description: 'make the case correct in string',
-      recommended: 'warn',
     },
     fixable: 'code',
     schema: [
@@ -59,13 +58,13 @@ export default createEslintRule<[RuleOption], MessageIds>({
   ],
   create: (context, [options]) => {
     const dict = loadDict(options)
-    const code = context.getSourceCode().text
+    const code = context.sourceCode.text
 
     const checkText = (node: TSESTree.Node) => {
       const start = node.range[0]
       const end = node.range[1]
       const originalStr = code.slice(start, end)
-      const outputs: { from: string; to: string; index: number }[] = []
+      const outputs: { from: string, to: string, index: number }[] = []
 
       replaceCore(originalStr, dict, options.ignore, (_, index, from, to) => {
         outputs.push({ index, from, to })
