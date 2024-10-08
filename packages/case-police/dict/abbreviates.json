@@ -39,6 +39,7 @@
   "http": "HTTP",
   "https": "HTTPS",
   "iife": "IIFE",
+  "iot": "IoT",
   "ipc": "IPC",
   "ipfs": "IPFS",
   "ipmi": "IPMI",
