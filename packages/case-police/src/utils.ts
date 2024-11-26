@@ -30,7 +30,7 @@ export function replaceCore(
 ) {
   regex = regex || buildRegex(dict)
   Array.from(code.matchAll(IGNORE_REGEX)).forEach((match) => {
-    const [, key] = match
+    const key = match[1].trim().replace(/\s*-->$/, '') // remove comment end
     ignore.push(...key.split(',').map(k => k.trim().toLowerCase()).filter(Boolean))
   })
 
