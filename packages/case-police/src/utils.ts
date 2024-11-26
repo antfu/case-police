@@ -11,7 +11,7 @@ export const DICT_FOLDER = dictDir
 export const IGNORE_KEY = '@case-police-ignore'
 export const DISABLE_KEY = '@case-police-disable'
 
-export const IGNORE_REGEX = /@case-police-ignore\s+((\S+( ?\S+)?)+)/g
+export const IGNORE_REGEX = /@case-police-ignore\s+((\S+( \S+)?)+)/g
 
 export const UTF8_RANGE = '[\u0080-\uFFFF]'
 
