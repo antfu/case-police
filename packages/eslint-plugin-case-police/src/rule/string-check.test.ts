@@ -1,8 +1,8 @@
+import type { RuleOption } from '../types'
 import fs from 'node:fs'
 import path from 'node:path'
-import { run } from 'eslint-vitest-rule-tester'
 import tsPaser from '@typescript-eslint/parser'
-import type { RuleOption } from '../types'
+import { run } from 'eslint-vitest-rule-tester'
 import rule from './string-check'
 
 const valids: ([string, [RuleOption]] | [string])[] = [

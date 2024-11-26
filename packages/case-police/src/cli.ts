@@ -1,13 +1,12 @@
-/* eslint-disable no-console */
 import { existsSync, promises as fs } from 'node:fs'
 import process from 'node:process'
 import fg from 'fast-glob'
+import isText from 'is-text-path'
+import minimist from 'minimist'
+import pLimit from 'p-limit'
 import c from 'picocolors'
 // @ts-expect-error missing types
 import parseIgnore from 'parse-gitignore'
-import isText from 'is-text-path'
-import pLimit from 'p-limit'
-import minimist from 'minimist'
 import { version } from '../package.json'
 import { buildRegex, loadDictPresets, replace } from './utils'
 

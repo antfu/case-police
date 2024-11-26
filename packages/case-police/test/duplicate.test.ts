@@ -1,5 +1,5 @@
-import { describe, expect, it } from 'vitest'
 import fg from 'fast-glob'
+import { describe, expect, it } from 'vitest'
 import { loadAllPresets, resolvePreset } from '../src/utils'
 
 describe('duplicate', () => {
