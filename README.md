@@ -69,7 +69,7 @@ npx case-police "**/*.md" path/to/file.html
 
 ### Ignores
 
-You can add `@case-police-disable` in your file to disable the case check for the particular file, or add `@case-police-ignore xxx` to ignore certain words in that file.
+You can add `@case-police-disable` in your file to disable the case check for the particular file, or add `@case-police-ignore xxx` to ignore certain words in that file (use comma to separate mutliple words).
 
 For example:
 
