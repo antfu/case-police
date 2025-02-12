@@ -1,10 +1,10 @@
 import { existsSync, promises as fs } from 'node:fs'
 import process from 'node:process'
+import c from 'ansis'
 import fg from 'fast-glob'
 import isText from 'is-text-path'
 import minimist from 'minimist'
 import pLimit from 'p-limit'
-import c from 'picocolors'
 // @ts-expect-error missing types
 import parseIgnore from 'parse-gitignore'
 import { version } from '../package.json'
@@ -68,9 +68,9 @@ async function run() {
 
   const limit = pLimit(5)
   console.log()
-  console.log(c.inverse(c.red(' Case ')) + c.inverse(c.blue(' Police ')) + c.dim(` v${version}`))
+  console.log(c.inverse.red(' Case ') + c.inverse.blue(' Police ') + c.dim` v${version}`)
   console.log()
-  console.log(c.blue(files.length) + c.dim(' files found for checking, ') + c.cyan(Object.keys(dict).length) + c.dim(' words loaded\n'))
+  console.log(c.blue(files.length) + c.dim` files found for checking, ${c.cyan(Object.keys(dict).length)} words loaded\n`)
   const wrote: string[] = []
   await Promise.all(files.map(file => limit(async () => {
     const code = await fs.readFile(file, 'utf-8')
@@ -90,8 +90,8 @@ async function run() {
       console.log(c.green('\nfiles fixed'))
     }
     else {
-      console.log(c.dim(`\n${wrote.length} files contain case errors`))
-      console.log(c.dim('run ') + c.magenta(c.bold('npx case-police --fix')) + c.dim(' to fix\n'))
+      console.log(c.dim`\n${wrote.length} files contain case errors`)
+      console.log(c.dim`run ${c.magenta.bold`npx case-police --fix`} to fix\n`)
       process.exitCode = 1
     }
   }
