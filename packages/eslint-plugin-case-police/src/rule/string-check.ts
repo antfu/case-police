@@ -89,7 +89,7 @@ export default createEslintRule<[RuleOption], MessageIds>({
           messageId: 'CasePoliceError',
           data: { from, to },
           node,
-          *fix(fixer) {
+          * fix(fixer) {
             yield fixer.replaceTextRange([start + index, start + index + from.length], to)
           },
           loc: {
@@ -123,11 +123,11 @@ export default createEslintRule<[RuleOption], MessageIds>({
     }
 
     // @ts-expect-error missing-types
-    if (context.parserServices == null || context.parserServices?.defineTemplateBodyVisitor == null)
+    if (context.sourceCode.parserServices == null || context.sourceCode.parserServices?.defineTemplateBodyVisitor == null)
       return scriptVisitor
     else
       // @ts-expect-error missing-types
-      return context.parserServices?.defineTemplateBodyVisitor(templateBodyVisitor, scriptVisitor)
+      return context.sourceCode.parserServices?.defineTemplateBodyVisitor(templateBodyVisitor, scriptVisitor)
   },
 
 })
