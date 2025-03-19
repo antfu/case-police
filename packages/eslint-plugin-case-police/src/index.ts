@@ -23,3 +23,5 @@ export type RuleOptions = {
 export type Rules = {
   [K in keyof RuleOptions]: Linter.RuleEntry<RuleOptions[K]>
 }
+
+export type asd = keyof RuleDefinitions

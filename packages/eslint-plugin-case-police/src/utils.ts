@@ -9,36 +9,6 @@ export type RuleModule<
 }
 
 /**
- * Creates reusable function to create rules with default options and docs URLs.
- *
- * @param urlCreator Creates a documentation URL for a given rule name.
- * @returns Function to create a rule with the docs URL format.
- */
-function RuleCreator(urlCreator: (name: string) => string) {
-  // This function will get much easier to call when this is merged https://github.com/Microsoft/TypeScript/pull/26349
-  // TODO - when the above PR lands; add type checking for the context.report `data` property
-  return function createNamedRule<
-    TOptions extends readonly unknown[],
-    TMessageIds extends string,
-  >({
-    name,
-    meta,
-    ...rule
-  }: Readonly<RuleWithMetaAndName<TOptions, TMessageIds>>): RuleModule<TOptions> {
-    return createRule<TOptions, TMessageIds>({
-      meta: {
-        ...meta,
-        docs: {
-          ...meta.docs,
-          url: urlCreator(name),
-        },
-      },
-      ...rule,
-    })
-  }
-}
-
-/**
  * Creates a well-typed TSESLint custom ESLint rule without a docs URL.
  *
  * @returns Well-typed TSESLint custom ESLint rule.
@@ -65,10 +35,26 @@ function createRule<
       return create(context, optionsWithDefault)
     }) as any,
     defaultOptions,
-    meta: meta as any,
+    meta: {
+      defaultOptions,
+      ...meta,
+    } as any,
   }
 }
 
-export const createEslintRule = RuleCreator(
-  ruleName => ruleName,
-) as any as <TOptions extends readonly unknown[], TMessageIds extends string>({ name, meta, ...rule }: Readonly<RuleWithMetaAndName<TOptions, TMessageIds>>) => RuleModule<TOptions>
+export function createEslintRule<
+  TOptions extends readonly unknown[],
+  TMessageIds extends string,
+>({
+  name,
+  meta,
+  ...rule
+}: Readonly<RuleWithMetaAndName<TOptions, TMessageIds>>): RuleModule<TOptions> {
+  return createRule<TOptions, TMessageIds>({
+    meta: {
+      ...meta,
+      docs: meta.docs,
+    },
+    ...rule,
+  })
+}
