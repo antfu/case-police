@@ -28,8 +28,27 @@ Only the word including both uppercase and lowercase will be fixed. (e.g. `Githu
 
 We also provide an ESLint plugin that can be used to lint your codebase.
 
+#### Flat Config
+
 ```bash
 npm i -D eslint-plugin-case-police
+```
+
+<!-- eslint-skip -->
+
+```js
+// .eslint.config.js
+import pluginCasePolice from "eslint-plugin-case-police";
+
+export default [
+  pluginCasePolice.configs.recommended,
+];
+```
+
+#### Legacy
+
+```bash
+npm i -D eslint-plugin-case-police@^1.0.0
 ```
 
 <!-- eslint-skip -->
