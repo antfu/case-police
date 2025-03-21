@@ -12,6 +12,13 @@ export type MessageIds = 'CasePoliceError'
 
 const loadDict = createSyncFn<(options: RuleOption) => Promise<Record<string, string>>>(join(distDir, 'worker-load.cjs'))
 
+const defaultOptions = {
+  noDefault: false,
+  dict: {},
+  presets: [],
+  ignore: [],
+}
+
 export default createEslintRule<[RuleOption], MessageIds>({
   name: RULE_NAME,
   meta: {
@@ -28,18 +35,22 @@ export default createEslintRule<[RuleOption], MessageIds>({
           dict: {
             description: 'Custom dictionary, will be merged with original dict.',
             type: 'object',
+            default: false,
           },
           noDefault: {
             description: 'Disable the default dictionary.',
             type: 'boolean',
+            default: {},
           },
           presets: {
             description: 'Filter the default presets.',
             type: 'array',
+            default: [],
           },
           ignore: {
             description: 'Ignore some words.',
             type: 'array',
+            default: [],
           },
         },
       },
@@ -48,15 +59,12 @@ export default createEslintRule<[RuleOption], MessageIds>({
       CasePoliceError: '\'{{ from }}\' should be \'{{ to }}\'.',
     },
   },
-  defaultOptions: [
-    {
-      noDefault: false,
-      dict: {},
-      presets: [],
-      ignore: [],
-    },
-  ],
-  create: (context, [options]) => {
+  defaultOptions: [defaultOptions],
+  create: (context) => {
+    const options = {
+      ...context.options,
+      ...defaultOptions,
+    }
     const dict = loadDict(options)
     const code = context.sourceCode.text
 
