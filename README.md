@@ -41,8 +41,30 @@ npm i -D eslint-plugin-case-police
 import pluginCasePolice from "eslint-plugin-case-police";
 
 export default [
-  pluginCasePolice.configs.recommended,
+  ...pluginCasePolice.configs.recommended,
 ];
+```
+
+OR
+
+<!-- eslint-skip -->
+
+```js
+// .eslint.config.js
+import pluginCasePolice from "eslint-plugin-case-police";
+
+export default [
+  {
+    name: 'case-police',
+    files: ['**/*.?([cm])[jt]s?(x)'],
+    plugins: {
+      'case-police': pluginCasePolice,
+    },
+    rules: {
+      'case-police/string-check': 'warn',
+    },
+  },
+]
 ```
 
 #### Legacy
