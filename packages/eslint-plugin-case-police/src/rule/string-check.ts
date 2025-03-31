@@ -35,12 +35,12 @@ export default createEslintRule<[RuleOption], MessageIds>({
           dict: {
             description: 'Custom dictionary, will be merged with original dict.',
             type: 'object',
-            default: false,
+            default: {},
           },
           noDefault: {
             description: 'Disable the default dictionary.',
             type: 'boolean',
-            default: {},
+            default: false,
           },
           presets: {
             description: 'Filter the default presets.',
@@ -62,8 +62,8 @@ export default createEslintRule<[RuleOption], MessageIds>({
   defaultOptions: [defaultOptions],
   create: (context) => {
     const options = {
-      ...context.options,
       ...defaultOptions,
+      ...context.options[0],
     }
     const dict = loadDict(options)
     const code = context.sourceCode.text

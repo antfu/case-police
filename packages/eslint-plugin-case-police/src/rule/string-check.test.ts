@@ -1,23 +1,23 @@
-import type { RuleOption } from '../types'
+import type { InvalidTestCase, ValidTestCase } from 'eslint-vitest-rule-tester'
 import fs from 'node:fs'
 import path from 'node:path'
 import tsPaser from '@typescript-eslint/parser'
 import { run } from 'eslint-vitest-rule-tester'
 import rule from './string-check'
 
-const valids: ([string, [RuleOption]] | [string])[] = [
-  ['const a="Ant Design"'],
-  ['const a="iOc"', [{ presets: ['softwares'] }]],
+const valids: ValidTestCase[] = [
+  'const a="Ant Design"',
+  { code: 'const a="iOc"', options: [{ presets: ['softwares'] }] },
 ]
 
-const invalids: ([string, string, number, [RuleOption]] | [string, string, number])[] = [
-  ['const a="Typescript \\n Ant design"', 'const a="TypeScript \\n Ant Design"', 2],
-  ['const a="Typescript"', 'const a="TypeScript"', 1],
-  ['const a="Typescript and Javascript"', 'const a="TypeScript and JavaScript"', 2],
-  ['const a={name:"Ant design"}', 'const a={name:"Ant Design"}', 1],
-  ['const a="nintendo Switch and Javascript"', 'const a="Nintendo Swicth and JavaScript"', 2, [{ dict: { 'nintendo switch': 'Nintendo Swicth' } }]],
-  ['const a="nintendo Switch and Javascript"', 'const a="Nintendo Swicth and Javascript"', 1, [{ dict: { 'nintendo switch': 'Nintendo Swicth' }, noDefault: true }]],
-  ['const a="alphaGo"', 'const a="AlphaGo"', 1, [{ presets: ['brands'] }]],
+const invalids: InvalidTestCase[] = [
+  { code: 'const a="Typescript \\n Ant design"', output: 'const a="TypeScript \\n Ant Design"', errors: 2 },
+  { code: 'const a="Typescript"', output: 'const a="TypeScript"', errors: 1 },
+  { code: 'const a="Typescript and Javascript"', output: 'const a="TypeScript and JavaScript"', errors: 2 },
+  { code: 'const a={name:"Ant design"}', output: 'const a={name:"Ant Design"}', errors: 1 },
+  { code: 'const a="nintendo Switch and Javascript"', output: 'const a="Nintendo Switch and JavaScript"', errors: 2, options: [{ dict: { 'nintendo switch': 'Nintendo Switch' } }] },
+  { code: 'const a="nintendo Switch and Javascript"', output: 'const a="Nintendo Switch and Javascript"', errors: 1, options: [{ dict: { 'nintendo switch': 'Nintendo Switch' }, noDefault: true }] },
+  { code: 'const a="alphaGo"', output: 'const a="AlphaGo"', errors: 1, options: [{ presets: ['brands'] }] },
 ]
 
 run({
@@ -27,25 +27,9 @@ run({
       code: fs.readFileSync(path.join(__dirname, '../test/original.txt'), 'utf-8'),
       output: fs.readFileSync(path.join(__dirname, '../test/expect.txt'), 'utf-8'),
     },
-    ...invalids.map(i => i[3]
-      ? ({
-          code: i[0],
-          output: i[1],
-          options: i[3],
-          errors: Array.from({ length: i[2] }, _ => ({ messageId: 'CasePoliceError' })),
-        })
-      : ({
-          code: i[0],
-          output: i[1],
-          errors: Array.from({ length: i[2] }, _ => ({ messageId: 'CasePoliceError' })),
-        })),
+    ...invalids,
   ],
-  valid: valids.map(i => i[1]
-    ? ({
-        code: i[0],
-        options: i?.[1],
-      })
-    : ({ code: i[0] })),
+  valid: valids,
   languageOptions: {
     parser: tsPaser,
   },
