@@ -26,9 +26,9 @@ function createRule<
     create: ((
       context: Readonly<RuleContext<TMessageIds, TOptions>>,
     ): RuleListener => {
-      console.warn(context)
-      console.warn(context.options)
-      console.warn(defaultOptions)
+      // console.warn(context)
+      // console.warn(context.options)
+      // console.warn(defaultOptions)
       const optionsWithDefault = context.options.map((options, index) => {
         return {
           ...defaultOptions[index] || {},

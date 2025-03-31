@@ -67,7 +67,9 @@ export default [
 ]
 ```
 
-#### Legacy
+#### Legacy Config
+
+> Since v2.0.0, we only support the flat config style. If you are using the legacy config, please use the version `1.x.x` of the plugin.
 
 ```bash
 npm i -D eslint-plugin-case-police@^1.0.0
