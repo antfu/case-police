@@ -2,3 +2,5 @@ packages:
   - playground
   - packages/**
   - fixtures/*
+onlyBuiltDependencies:
+  - esbuild
