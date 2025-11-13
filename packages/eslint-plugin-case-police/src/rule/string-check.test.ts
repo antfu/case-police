@@ -2,7 +2,10 @@ import type { InvalidTestCase, ValidTestCase } from 'eslint-vitest-rule-tester'
 import fs from 'node:fs'
 import path from 'node:path'
 import tsPaser from '@typescript-eslint/parser'
+import { RuleTester } from 'eslint'
+import * as eslintMdx from 'eslint-mdx'
 import { run } from 'eslint-vitest-rule-tester'
+import { assert, describe, it } from 'vitest'
 import rule from './string-check'
 
 const valids: ValidTestCase[] = [
@@ -21,6 +24,7 @@ const invalids: InvalidTestCase[] = [
 ]
 
 run({
+  name: 'string-check',
   rule,
   invalid: [
     {
@@ -33,4 +37,51 @@ run({
   languageOptions: {
     parser: tsPaser,
   },
+})
+
+const ruleTester = new RuleTester({
+  files: ['**/*.{md,mdx}'],
+  languageOptions: {
+    parser: eslintMdx,
+  },
+})
+
+describe('string-check (Markdown)', () => {
+  it('invalid: should not throw', () => {
+    assert.doesNotThrow(() => {
+      ruleTester.run('string-check (Markdown)', rule, {
+        valid: [],
+        invalid: [
+          {
+            filename: '../test/original.md',
+            code: fs.readFileSync(
+              path.join(__dirname, '../test/original.md'),
+              'utf8',
+            ),
+            output: fs.readFileSync(
+              path.join(__dirname, '../test/expect.md'),
+              'utf8',
+            ),
+            errors: [
+              {
+                messageId: 'CasePoliceError',
+                line: 1,
+                column: 4,
+              },
+              {
+                messageId: 'CasePoliceError',
+                line: 3,
+                column: 1,
+              },
+              {
+                messageId: 'CasePoliceError',
+                line: 3,
+                column: 16,
+              },
+            ],
+          },
+        ],
+      })
+    })
+  })
 })

@@ -25,6 +25,7 @@
   },
   "devDependencies": {
     "@typescript-eslint/parser": "^8.28.0",
+    "eslint-mdx": "^3.6.2",
     "eslint-plugin-case-police": "workspace:*"
   }
 }

@@ -1,7 +1,7 @@
 import type { TSESTree } from '@typescript-eslint/utils'
 import type { RuleListener } from '@typescript-eslint/utils/ts-eslint'
 import type { RuleOption } from '../types'
-import { join } from 'node:path'
+import { extname, join } from 'node:path'
 import { replaceCore } from 'case-police'
 import { createSyncFn } from 'synckit'
 import { distDir } from '../dirs'
@@ -67,6 +67,8 @@ export default createEslintRule<[RuleOption], MessageIds>({
     }
     const dict = loadDict(options)
     const code = context.sourceCode.text
+    const extension = extname(context.getFilename())
+    const isMarkdown = extension === '.md' || extension === '.mdx'
 
     const checkText = (node: TSESTree.Node) => {
       const start = node.range[0]
@@ -121,6 +123,10 @@ export default createEslintRule<[RuleOption], MessageIds>({
       },
       TemplateElement: (node) => {
         checkText(node)
+      },
+      Program: (node) => {
+        if (isMarkdown)
+          checkText(node)
       },
     }
 
