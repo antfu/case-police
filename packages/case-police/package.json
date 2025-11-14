@@ -10,7 +10,8 @@
   "homepage": "https://github.com/antfu/case-police#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/antfu/case-police.git"
+    "url": "git+https://github.com/antfu/case-police.git",
+    "directory": "packages/case-police"
   },
   "bugs": {
     "url": "https://github.com/antfu/case-police/issues"
