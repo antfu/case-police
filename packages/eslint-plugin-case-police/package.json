@@ -19,12 +19,12 @@
     "eslint": "^9.9.0"
   },
   "dependencies": {
-    "@typescript-eslint/utils": "^8.28.0",
+    "@typescript-eslint/utils": "^8.46.4",
     "case-police": "workspace:*",
-    "synckit": "^0.10.3"
+    "synckit": "^0.11.11"
   },
   "devDependencies": {
-    "@typescript-eslint/parser": "^8.28.0",
+    "@typescript-eslint/parser": "^8.46.4",
     "eslint-mdx": "^3.6.2",
     "eslint-plugin-case-police": "workspace:*"
   }
