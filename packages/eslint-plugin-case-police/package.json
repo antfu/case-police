@@ -28,7 +28,7 @@
     "lint": "nr build && cd ./fixture && eslint ./src"
   },
   "peerDependencies": {
-    "eslint": "^9.9.0"
+    "eslint": "^9.9.0 || ^10.0.0"
   },
   "dependencies": {
     "@typescript-eslint/utils": "^8.46.4",

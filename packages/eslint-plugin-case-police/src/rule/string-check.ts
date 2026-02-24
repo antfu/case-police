@@ -67,7 +67,7 @@ export default createEslintRule<[RuleOption], MessageIds>({
     }
     const dict = loadDict(options)
     const code = context.sourceCode.text
-    const extension = extname(context.getFilename())
+    const extension = extname(context.filename)
     const isMarkdown = extension === '.md' || extension === '.mdx'
 
     const checkText = (node: TSESTree.Node) => {
