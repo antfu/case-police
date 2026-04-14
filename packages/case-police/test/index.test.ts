@@ -44,6 +44,26 @@ describe('presets', () => {
   })
 })
 
+describe('longest-match wins', () => {
+  it('prefers a longer dictionary key over a shorter prefix regardless of insertion order', async () => {
+    const dict = {
+      'abc': 'Abc',
+      'abc.def': 'Abc.Def',
+    }
+    const replaced = await replace('AbC AbC.DeF', '', dict)
+    expect(replaced).toBe('Abc Abc.Def')
+  })
+
+  it('same result when the shorter key comes first in the dictionary', async () => {
+    const dict = {
+      'abc.def': 'Abc.Def',
+      'abc': 'Abc',
+    }
+    const replaced = await replace('AbC AbC.DeF', '', dict)
+    expect(replaced).toBe('Abc Abc.Def')
+  })
+})
+
 describe('utf8', async () => {
   let preset = {}
   const presetFilePath = path.join(__dirname, './dict/utf8.json')

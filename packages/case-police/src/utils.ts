@@ -16,7 +16,10 @@ export const IGNORE_REGEX = /@case-police-ignore\s+(.*)/g
 export const UTF8_RANGE = '[\u0080-\uFFFF]'
 
 export function buildRegex(dictionary: Record<string, string>): RegExp {
-  const keys = Object.keys(dictionary)
+  // Sort keys by length descending so that longer, more specific rules
+  // (e.g. "abc.def") are tried before shorter prefixes (e.g. "abc") — regex
+  // alternation is leftmost-wins, not longest-wins.
+  const keys = Object.keys(dictionary).sort((a, b) => b.length - a.length)
   const regex = new RegExp(`\\b(${keys.join('|').replace(/\+/g, '\\+')})\\b`, 'gi')
   return regex
 }
