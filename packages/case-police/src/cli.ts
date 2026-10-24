@@ -42,7 +42,7 @@ async function run() {
 
   // presets
   if (!argv['no-default'])
-    dict = await loadDictPresets(argv.preset)
+    dict = await loadDictPresets(argv.presets)
 
   // dict
   if (argv.dict) {
